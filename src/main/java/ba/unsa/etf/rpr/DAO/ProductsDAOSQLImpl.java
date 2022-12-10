@@ -78,6 +78,22 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
     @Override
     public Products update(Products item) {
 
+        String insert = "UPDATE categories SET Product_name = ?, Price = ?, LeftInStock = ? WHERE id = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+
+            stmt.setObject(1, item.getName());
+            stmt.setObject(2, item.getPrice());
+            stmt.setObject(3, item.getLeftInStock());
+            stmt.setObject(4, item.getId());
+            stmt.executeUpdate();
+
+            return item;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
 
     }
 
