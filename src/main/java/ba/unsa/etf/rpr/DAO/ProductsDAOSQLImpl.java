@@ -1,10 +1,12 @@
 package ba.unsa.etf.rpr.DAO;
 
 import ba.unsa.etf.rpr.domain.Products;
+import ba.unsa.etf.rpr.DAO.ProductsDAO;
 
 import java.sql.*;
+import java.util.List;
 
-public class ProductsDAOSQLImpl {
+public class ProductsDAOSQLImpl implements ProductsDAO {
     private Connection connection;
 
     public ProductsDAOSQLImpl(){
@@ -15,6 +17,7 @@ public class ProductsDAOSQLImpl {
         }
     }
 
+    @Override
     public Products getById(int id)  {
         String query = "SELECT * FROM products WHERE id = ?";
         try {
@@ -43,6 +46,49 @@ public class ProductsDAOSQLImpl {
 
         return null;
 
+    }
+
+    @Override
+    public Products add(Products item) {
+        String insert = "INSERT INTO products(Product_name, Price, LeftInStock) VALUES(?)";
+
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, item.getName());
+            stmt.setDouble(2,item.getPrice());
+            stmt.setInt(3,item.getLeftInStock());
+            stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+
+            item.setId(rs.getInt(1));
+            return item;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+
+
+        return null;
+    }
+
+    @Override
+    public Products update(Products item) {
+
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public List<Products> getAll() {
+        return null;
     }
 
 
