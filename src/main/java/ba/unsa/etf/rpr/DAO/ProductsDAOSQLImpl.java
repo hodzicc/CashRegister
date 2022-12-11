@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.Products;
 import ba.unsa.etf.rpr.DAO.ProductsDAO;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsDAOSQLImpl implements ProductsDAO {
@@ -111,8 +112,28 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
 
     @Override
     public List<Products> getAll() {
-        return null;
+
+         String query = "SELECT * FROM products";
+        List<Products> products = new ArrayList<Products>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){ // result set is iterator.
+                Products product = new Products();
+                product.setId(rs.getInt("ID_product"));
+                product.setName(rs.getString("Product_name"));
+                product.setPrice(rs.getDouble("Price"));
+                product.setLeftInStock(rs.getInt("LeftInStock"));
+                products.add(product);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace(); // poor error handling
+        }
+        return products;
     }
+
+
 
 
 }
