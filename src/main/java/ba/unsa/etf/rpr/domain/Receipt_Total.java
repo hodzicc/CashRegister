@@ -54,4 +54,14 @@ public class Receipt_Total {
     public int hashCode() {
         return Objects.hash(id,total,date,Eid);
     }
+
+    @Override
+    public String toString() {
+        return "Receipt_Total{" +
+                "id=" + id +
+                ", total=" + total +
+                ", date=" + date +
+                ", Eid=" + Eid +
+                '}';
+    }
 }
