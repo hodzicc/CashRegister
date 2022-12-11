@@ -90,4 +90,30 @@ public class ReceiptsDAOSQLImpl implements ReceiptsDAO {
         return receipts;
 
     }
+
+    @Override
+    public double getTotal(int idr) {
+        String query = "SELECT SUM(LineTotal) FROM Receipts WHERE idReceipts = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, idr);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+
+                double total = rs.getDouble(1);
+
+                rs.close();
+                return total;
+
+            }
+            else return 0;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
 }
