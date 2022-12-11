@@ -79,7 +79,24 @@ public class EmployeesDAOSQLImpl implements EmployeesDAO{
 
     @Override
     public Employees update(Employees item) {
-        return null;
+
+        String insert = "UPDATE Employees SET username = ?, password = ?, Name = ?, Admin_access = ? WHERE idEmployee = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+
+            stmt.setString(1, item.getUsername());
+            stmt.setString(2,item.getPassword());
+            stmt.setString(3,item.getName());
+            stmt.setBoolean(4,item.isAdmin());
+
+            stmt.executeUpdate();
+
+            return item;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
 
 
     }
