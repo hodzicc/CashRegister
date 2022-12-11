@@ -7,4 +7,6 @@ public interface EmployeesDAO extends DAO<Employees>{
     Employees getByUsername(String usr);
 
     Employees getById(int id);
+
+    Employees update(Employees item);
 }

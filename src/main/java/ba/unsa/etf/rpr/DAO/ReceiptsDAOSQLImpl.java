@@ -46,11 +46,6 @@ public class ReceiptsDAOSQLImpl implements ReceiptsDAO {
     }
 
     @Override
-    public Receipts update(Receipts item) {
-        return null;
-    }
-
-    @Override
     public void delete(int id) {
 
     }
