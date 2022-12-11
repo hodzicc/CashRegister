@@ -19,7 +19,7 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
 
     @Override
     public Products getById(int id)  {
-        String query = "SELECT * FROM products WHERE id = ?";
+        String query = "SELECT * FROM products WHERE ID_Product = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
@@ -54,6 +54,7 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
 
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+
             stmt.setString(1, item.getName());
             stmt.setDouble(2,item.getPrice());
             stmt.setInt(3,item.getLeftInStock());
@@ -69,16 +70,13 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
             e.printStackTrace();
         }
 
-
-
-
         return null;
     }
 
     @Override
     public Products update(Products item) {
 
-        String insert = "UPDATE categories SET Product_name = ?, Price = ?, LeftInStock = ? WHERE id = ?";
+        String insert = "UPDATE products SET Product_name = ?, Price = ?, LeftInStock = ? WHERE ID_product = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 
@@ -99,6 +97,15 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
 
     @Override
     public void delete(int id) {
+
+        String delete = "DELETE FROM products WHERE ID_Product = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(delete, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, id);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
     }
 
