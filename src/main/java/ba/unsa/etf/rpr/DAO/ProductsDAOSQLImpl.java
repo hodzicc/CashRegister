@@ -17,7 +17,6 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
             e.printStackTrace();
         }
     }
-
     @Override
     public Products getById(int id)  {
         String query = "SELECT * FROM products WHERE ID_Product = ?";
