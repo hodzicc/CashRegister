@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.DAO;
 
+import ba.unsa.etf.rpr.domain.Employees;
 import ba.unsa.etf.rpr.domain.Receipt_Total;
 import ba.unsa.etf.rpr.domain.Receipts;
 
@@ -115,6 +116,33 @@ public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
 
     @Override
     public Receipt_Total getById(int id) {
+
+        String query = "SELECT * FROM Receipt_Total WHERE ID_receipt = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                Receipt_Total receipt = new Receipt_Total();
+
+                receipt.setId(rs.getInt("ID_receipt"));
+                receipt.setTotal(rs.getDouble("Total"));
+                receipt.setDate(rs.getDate("Date"));
+                receipt.setEid(rs.getInt("Employee_ID"));
+
+                rs.close();
+                return receipt;
+
+            }
+            else return null;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
+
+
     }
 }
