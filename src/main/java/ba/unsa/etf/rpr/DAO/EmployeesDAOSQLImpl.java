@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.Employees;
 import ba.unsa.etf.rpr.domain.Products;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeesDAOSQLImpl implements EmployeesDAO{
@@ -117,7 +118,35 @@ public class EmployeesDAOSQLImpl implements EmployeesDAO{
 
     @Override
     public List<Employees> getAll() {
-        return null;
+
+        String query = "SELECT * FROM Employees";
+        List<Employees> employees = new ArrayList<Employees>();
+
+        try{
+
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+
+                Employees employee = new Employees();
+
+                employee.setId(rs.getInt("idEmployee"));
+                employee.setUsername(rs.getString("username"));
+                employee.setPassword(rs.getString("password"));
+                employee.setName(rs.getString("Name"));
+                employee.setAdmin(rs.getBoolean("Admin_access"));
+
+                employees.add(employee);
+            }
+
+            rs.close();
+
+        }catch (SQLException e){
+            e.printStackTrace(); // poor error handling
+        }
+
+        return employees;
     }
 
     @Override
