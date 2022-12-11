@@ -1,8 +1,10 @@
 package ba.unsa.etf.rpr.DAO;
 
 import ba.unsa.etf.rpr.domain.Receipt_Total;
+import ba.unsa.etf.rpr.domain.Receipts;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
@@ -60,7 +62,33 @@ public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
 
     @Override
     public List<Receipt_Total> getAll() {
-        return null;
+        String query = "SELECT * FROM Receipt_Total";
+        List<Receipt_Total> receipts = new ArrayList<Receipt_Total>();
+
+        try{
+
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+
+                Receipt_Total receipt = new Receipt_Total();
+
+                receipt.setId(rs.getInt("ID_receipt"));
+                receipt.setTotal(rs.getDouble("Total"));
+                receipt.setDate(rs.getDate("Date"));
+                receipt.setEid(rs.getInt("Employee_ID"));
+
+                receipts.add(receipt);
+            }
+
+            rs.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return receipts;
     }
 
     @Override
