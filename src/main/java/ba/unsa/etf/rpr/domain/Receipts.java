@@ -53,4 +53,14 @@ public class Receipts {
     public int hashCode() {
         return Objects.hash(idR, idP, Quantity, LineTotal);
     }
+
+    @Override
+    public String toString() {
+        return "Receipts{" +
+                "idR=" + idR +
+                ", idP=" + idP +
+                ", Quantity=" + Quantity +
+                ", LineTotal=" + LineTotal +
+                '}';
+    }
 }
