@@ -151,6 +151,35 @@ public class EmployeesDAOSQLImpl implements EmployeesDAO{
 
     @Override
     public Employees getByUsername(String usr) {
+
+        String query = "SELECT * FROM Employees WHERE username = ?";
+
+        try {
+
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setString(1, usr);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                Employees employee = new Employees();
+
+                employee.setId(rs.getInt("idEmployee"));
+                employee.setUsername(rs.getString("username"));
+                employee.setPassword(rs.getString("password"));
+                employee.setName(rs.getString("Name"));
+                employee.setAdmin(rs.getBoolean("Admin_access"));
+
+                rs.close();
+                return employee;
+
+            }
+            else return null;
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
         return null;
     }
 }
