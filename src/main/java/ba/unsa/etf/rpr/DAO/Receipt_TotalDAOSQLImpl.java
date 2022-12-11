@@ -46,6 +46,15 @@ public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
 
     @Override
     public void delete(int id) {
+        String delete = "DELETE FROM Receipt_Total WHERE ID_receipt = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(delete, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, id);
+
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
     }
 
