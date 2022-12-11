@@ -93,7 +93,24 @@ public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
 
     @Override
     public Receipt_Total update(Receipt_Total item) {
-        return null;
+
+        String insert = "UPDATE Receipt_Total SET Total = ?, Date = ?, Employee_ID = ? WHERE ID_receipt = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+
+            stmt.setDouble(1, item.getTotal());
+            stmt.setDate(2, (Date) item.getDate());
+            stmt.setInt(3,item.getEid());
+
+            stmt.executeUpdate();
+
+            return item;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     @Override
