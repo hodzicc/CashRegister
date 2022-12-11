@@ -104,6 +104,15 @@ public class EmployeesDAOSQLImpl implements EmployeesDAO{
     @Override
     public void delete(int id) {
 
+        String delete = "DELETE FROM Employees WHERE idEmployee = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(delete, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, id);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
