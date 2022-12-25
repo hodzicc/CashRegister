@@ -18,14 +18,20 @@ public class LoginController {
 
         if(empl==null)
         {
-            new Alert(Alert.AlertType.ERROR, "Pogrešan username ili password", ButtonType.OK).show();
+            new Alert(Alert.AlertType.ERROR, "Pogrešan username", ButtonType.OK).show();
 
         }
 
-        if(empl.isAdmin()){
+        if(empl.isAdmin() && empl.getPassword().equals(password)){
+            new Alert(Alert.AlertType.INFORMATION, "Admin", ButtonType.OK).show();
 
+        }
+        else if(!empl.isAdmin() && empl.getPassword().equals(password))
+        {
+            new Alert(Alert.AlertType.CONFIRMATION, "Korisnik", ButtonType.OK).show();
         }
         else{
+            new Alert(Alert.AlertType.ERROR, "Pogrešan password", ButtonType.OK).show();
 
         }
 
