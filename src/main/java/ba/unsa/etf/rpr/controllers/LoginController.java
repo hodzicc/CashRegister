@@ -3,7 +3,13 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.DAO.EmployeesDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Employees;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class LoginController {
     public PasswordField PasswordLine;
@@ -23,7 +29,7 @@ public class LoginController {
         }
 
         if(empl.isAdmin() && empl.getPassword().equals(password)){
-            new Alert(Alert.AlertType.INFORMATION, "Admin", ButtonType.OK).show();
+            openDialog("AdminMenu", "/fxml/AdminMenu.fxml",null);
 
         }
         else if(!empl.isAdmin() && empl.getPassword().equals(password))
@@ -36,5 +42,18 @@ public class LoginController {
         }
 
 
+    }
+    private void openDialog(String title, String file, Object controller){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+            loader.setController(controller);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setTitle(title);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        }catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 }
