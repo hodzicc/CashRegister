@@ -52,7 +52,7 @@
             <Font name="Berlin Sans FB Demi Bold" size="12.0" />
          </font>
       </Button>
-      <Label prefHeight="27.0" prefWidth="298.0" text="CASH REGISTER - PLEASE LOGIN">
+      <Label prefHeight="27.0" prefWidth="298.0" text="CASH REGISTER - PLEASE LOGIN" textFill="#1a0033">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="18.0" />
          </font>
