@@ -13,6 +13,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Button fx:id="ProductsBtn" mnemonicParsing="false" onAction="#onProductsClicked" prefHeight="25.0" prefWidth="234.0" style="-fx-border-radius: 20;" text="PRODUCTS" textFill="#1a0033" GridPane.rowIndex="1">
@@ -23,7 +24,7 @@
             <Font name="Berlin Sans FB Demi Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="ReceiptsBtn" mnemonicParsing="false" onAction="#onReceiptsClicked" prefHeight="29.0" prefWidth="214.0" text="PRINT RECEIPTS" textFill="#1a0033" GridPane.rowIndex="2">
+      <Button fx:id="ReceiptsBtn" mnemonicParsing="false" onAction="#onReceiptsClicked" prefHeight="25.0" prefWidth="234.0" text="PRINT RECEIPTS" textFill="#1a0033" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
@@ -39,5 +40,13 @@
             <Font name="Berlin Sans FB Demi Bold" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="RegistrationBtn" mnemonicParsing="false" onMouseClicked="#onUserRegistrationClicked" prefHeight="25.0" prefWidth="234.0" text="USER REGISTRATION" textFill="#1a0033" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </GridPane>
