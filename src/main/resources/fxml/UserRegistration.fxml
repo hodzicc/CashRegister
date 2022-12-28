@@ -44,7 +44,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="SaveBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="SAVE" GridPane.rowIndex="6">
+      <Button fx:id="SaveBtn" mnemonicParsing="false" onMouseClicked="#onSaveClicked" prefHeight="30.0" prefWidth="75.0" text="SAVE" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets bottom="20.0" left="60.0" top="20.0" />
          </GridPane.margin>
@@ -52,7 +52,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="CancelBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="CANCEL" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <Button fx:id="CancelBtn" mnemonicParsing="false" onMouseClicked="#onCancelClicked" prefHeight="30.0" prefWidth="75.0" text="CANCEL" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets bottom="20.0" left="80.0" right="60.0" top="20.0" />
          </GridPane.margin>
