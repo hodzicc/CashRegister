@@ -3,9 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.DAO.EmployeesDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Employees;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -22,6 +20,8 @@ public class UserRegistrationController {
     public Label FullNameCheck;
     public Label UsernameCheck;
     public Label PasswordCheck;
+    public CheckBox checkBoxAdmin;
+
 
     public void initialize(){
 
@@ -77,5 +77,22 @@ public class UserRegistrationController {
     }
 
     public void onSaveClicked(MouseEvent mouseEvent) {
+        EmployeesDAOSQLImpl sqlimpl = new EmployeesDAOSQLImpl();
+        String username = UsernameField.getText();
+        String password = PasswordField.getText();
+        String name = NameField.getText();
+        boolean isAdmin = checkBoxAdmin.isSelected();
+
+        Employees empl = new Employees();
+        empl.setName(name);
+        empl.setUsername(username);
+        empl.setPassword(password);
+        empl.setAdmin(isAdmin);
+
+        sqlimpl.add(empl);
+        Node n = (Node) mouseEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
+
     }
 }
