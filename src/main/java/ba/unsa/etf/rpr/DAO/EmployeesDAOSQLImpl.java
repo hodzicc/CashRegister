@@ -54,23 +54,19 @@ public class EmployeesDAOSQLImpl implements EmployeesDAO{
     @Override
     public Employees add(Employees item) {
 
-        String insert = "INSERT INTO employees(username, password, Name, Admin_access) VALUES(?)";
+        String insert = "INSERT INTO Employees(username, password, Name, Admin_access) VALUES(?,?,?,?)";
 
         try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = this.connection.prepareStatement(insert);
 
             stmt.setString(1, item.getUsername());
             stmt.setString(2,item.getPassword());
             stmt.setString(3,item.getName());
             stmt.setBoolean(4,item.isAdmin());
 
-            stmt.executeUpdate();
+            stmt.execute();
 
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-
-            item.setId(rs.getInt(1));
-            return item;
+            return null;
 
         }catch (SQLException e){
             e.printStackTrace();
