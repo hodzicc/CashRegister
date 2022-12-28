@@ -5,16 +5,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.UserRegistrationController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="288.0" prefWidth="359.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.UserRegistrationController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="145.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="10.0" prefWidth="212.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="70.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label text="Full name: ">
@@ -25,7 +28,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Username:" GridPane.rowIndex="1">
+      <Label text="Username:" GridPane.rowIndex="2">
          <font>
             <Font size="18.0" />
          </font>
@@ -33,7 +36,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Password:" GridPane.rowIndex="2">
+      <Label text="Password:" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
@@ -41,7 +44,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="SaveBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="SAVE" GridPane.rowIndex="3">
+      <Button fx:id="SaveBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="SAVE" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets bottom="20.0" left="60.0" top="20.0" />
          </GridPane.margin>
@@ -49,7 +52,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="CancelBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="CANCEL" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Button fx:id="CancelBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="CANCEL" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets bottom="20.0" left="80.0" right="60.0" top="20.0" />
          </GridPane.margin>
@@ -62,15 +65,30 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="UsernameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="UsernameField" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
       </TextField>
-      <PasswordField fx:id="PasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <PasswordField fx:id="PasswordField" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
       </PasswordField>
+      <Label fx:id="FullNameCheck" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="UsernameCheck" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="PasswordCheck" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+      </Label>
    </children>
 </GridPane>
