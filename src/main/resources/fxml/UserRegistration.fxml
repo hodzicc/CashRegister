@@ -75,7 +75,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
       </PasswordField>
-      <Label fx:id="FullNameCheck" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Label fx:id="FullNameCheck" textFill="#fc0606" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
