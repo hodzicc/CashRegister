@@ -16,7 +16,7 @@ public class LoginController {
     public TextField UsrnmLine;
     public Button LoginBtn;
     public Label PswrdCheck;
-    public Label UsrnmCheck;
+
     public void loginClick(ActionEvent actionEvent) {
         String username = new String(UsrnmLine.getText());
         String password = new String (PasswordLine.getText());
