@@ -5,25 +5,29 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="grid" prefHeight="232.0" prefWidth="310.0" style="-fx-background-color: #e6ccff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LoginController">
+<GridPane fx:id="grid" prefHeight="332.0" prefWidth="394.0" style="-fx-background-color: #e6ccff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LoginController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="15.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="63.0" minHeight="0.0" prefHeight="39.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="50.0" minHeight="6.0" prefHeight="32.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField fx:id="UsrnmLine" GridPane.rowIndex="2">
+      <TextField fx:id="UsrnmLine" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </GridPane.margin>
       </TextField>
-      <Label text="Username: " textFill="#1a0033" GridPane.rowIndex="1">
+      <Label text="Username: " textFill="#1a0033" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="22.0" />
          </font>
@@ -31,7 +35,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Label>
-      <Label prefHeight="27.0" prefWidth="129.0" text="Password:" textFill="#1a0033" GridPane.rowIndex="3">
+      <Label prefHeight="27.0" prefWidth="129.0" text="Password:" textFill="#1a0033" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="22.0" />
          </font>
@@ -39,26 +43,31 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Label>
-      <PasswordField fx:id="PasswordLine" GridPane.rowIndex="4">
+      <PasswordField fx:id="PasswordLine" GridPane.columnIndex="2" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </GridPane.margin>
       </PasswordField>
-      <Button id="LoginButton" fx:id="LoginBtn" alignment="CENTER" mnemonicParsing="false" onAction="#loginClick" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: GRA #b366ff; -fx-border-color: #9933ff; -fx-border-radius: 20;" text="LOGIN" textAlignment="CENTER" textFill="#2e025e" GridPane.rowIndex="5">
+      <Button id="LoginButton" fx:id="LoginBtn" alignment="CENTER" mnemonicParsing="false" onAction="#loginClick" style="-fx-background-color: GRA #b366ff; -fx-border-color: #9933ff; -fx-border-radius: 20;" text="  LOGIN  " textAlignment="CENTER" textFill="#2e025e" GridPane.columnIndex="2" GridPane.rowIndex="7">
          <GridPane.margin>
-            <Insets bottom="10.0" left="120.0" right="120.0" top="10.0" />
+            <Insets bottom="10.0" left="150.0" right="120.0" top="10.0" />
          </GridPane.margin>
          <font>
-            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="18.0" />
          </font>
       </Button>
-      <Label prefHeight="27.0" prefWidth="298.0" text="CASH REGISTER - PLEASE LOGIN" textFill="#1a0033">
+      <Label prefHeight="27.0" prefWidth="298.0" text="CASH REGISTER - PLEASE LOGIN" textFill="#1a0033" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="18.0" />
          </font>
          <padding>
             <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
          </padding>
+      </Label>
+      <Label fx:id="PswrdCheck" textFill="#ff0505" GridPane.columnIndex="2" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
       </Label>
    </children>
 </GridPane>

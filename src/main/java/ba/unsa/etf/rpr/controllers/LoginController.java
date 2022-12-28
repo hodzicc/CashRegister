@@ -15,6 +15,8 @@ public class LoginController {
     public PasswordField PasswordLine;
     public TextField UsrnmLine;
     public Button LoginBtn;
+    public Label PswrdCheck;
+    public Label UsrnmCheck;
     public void loginClick(ActionEvent actionEvent) {
         String username = new String(UsrnmLine.getText());
         String password = new String (PasswordLine.getText());
@@ -55,5 +57,25 @@ public class LoginController {
         }catch (Exception e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
+    }
+
+    public void initialize(){
+/*
+        UsrnmLine.textProperty().addListener((obs, oldValue, newValue)->{
+
+            if(newValue.length()>=4)
+                UsrnmCheck.setText("");
+            else UsrnmCheck.setText("Username not valid");
+
+
+        });
+*/
+        PasswordLine.textProperty().addListener((obs, oldValue, newValue)->{
+
+            if(newValue.length()>=4)
+                PswrdCheck.setText("");
+            else PswrdCheck.setText("Password not valid");
+
+        });
     }
 }

@@ -14,7 +14,7 @@ public class AppFX extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
         stage.setTitle("Cash Register");
-        stage.setScene(new Scene(root, 300, 275));
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();
 
