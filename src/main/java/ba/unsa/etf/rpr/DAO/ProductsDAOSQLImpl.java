@@ -56,7 +56,7 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
 
     @Override
     public Products add(Products item) {
-        String insert = "INSERT INTO products(Product_name, Price, LeftInStock) VALUES(?)";
+        String insert = "INSERT INTO Products(Product_name, Price, LeftInStock) VALUES(?,?,?)";
 
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
