@@ -44,7 +44,9 @@ public class ProductsController {
     }
 
     public void onAddClicked(MouseEvent mouseEvent) {
+
         openDialog("Add product", "/fxml/AddProduct.fxml",null);
+
     }
 
     public void onUpdateClicked(MouseEvent mouseEvent) {
@@ -76,6 +78,8 @@ public class ProductsController {
 
     private void openDialog(String title, String file, Object controller){
         try {
+            ((Stage)ProductsPane.getScene().getWindow()).hide();
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
             loader.setController(controller);
             Stage stage = new Stage();
@@ -84,6 +88,10 @@ public class ProductsController {
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
             stage.setResizable(false);
+            stage.setOnHiding(event -> {
+                ((Stage)ProductsPane.getScene().getWindow()).show();
+                refreshTable();
+            });
         }catch (Exception e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
