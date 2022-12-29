@@ -3,14 +3,18 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Products;
 import javafx.collections.FXCollections;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class ProductsController {
     public Button addBtn;
@@ -41,6 +45,7 @@ public class ProductsController {
 
 
     public void onAddClicked(MouseEvent mouseEvent) {
+
     }
 
     public void onUpdateClicked(MouseEvent mouseEvent) {
@@ -50,6 +55,21 @@ public class ProductsController {
     }
 
     public void onExitClicked(MouseEvent mouseEvent) {
+    }
+
+    private void openDialog(String title, String file, Object controller){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+            loader.setController(controller);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setTitle(title);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+            stage.setResizable(false);
+        }catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 }
 
