@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Products;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -67,6 +68,9 @@ public class ProductsController {
     }
 
     public void onExitClicked(MouseEvent mouseEvent) {
+        Node n = (Node) mouseEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
     }
 
     private void openDialog(String title, String file, Object controller){
