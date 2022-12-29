@@ -29,8 +29,10 @@
       </ButtonBar>
       <TableView fx:id="productsTable" prefHeight="273.0" prefWidth="600.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="ProductIdCol" maxWidth="151.0" minWidth="100.0" prefWidth="151.0" text="PRODUCT ID" />
+          <TableColumn fx:id="ProductNameCol" maxWidth="170.0" minWidth="-1.0" prefWidth="170.0" text="PRODUCT NAME" />
+            <TableColumn fx:id="ProductPriceCol" maxWidth="174.0" minWidth="-1.0" prefWidth="137.0" text="PRODUCT PRICE" />
+            <TableColumn fx:id="LeftInStockCol" maxWidth="182.0" minWidth="-1.0" prefWidth="141.0" text="LEFT IN STOCK" />
         </columns>
       </TableView>
    </children>
