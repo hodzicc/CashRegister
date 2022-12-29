@@ -16,6 +16,8 @@ public class AdminMenuController {
 
     public void onProductsClicked(ActionEvent actionEvent) {
 
+        openDialog("Products", "/fxml/Products.fxml",null);
+
     }
 
     public void onReceiptsClicked(ActionEvent actionEvent) {
