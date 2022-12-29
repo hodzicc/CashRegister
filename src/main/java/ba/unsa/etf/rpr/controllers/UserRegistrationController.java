@@ -91,6 +91,9 @@ public class UserRegistrationController {
 
         sqlimpl.add(empl);
 
+        new Alert(Alert.AlertType.NONE,"New employee added successfully", ButtonType.OK).show();
+
+
 
         Node n = (Node) mouseEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();

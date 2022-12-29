@@ -53,6 +53,7 @@ public class LoginController {
             stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setTitle(title);
             stage.initStyle(StageStyle.UTILITY);
+            stage.setResizable(false);
             stage.show();
         }catch (Exception e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();

@@ -36,6 +36,7 @@ public class AdminMenuController {
             stage.setTitle(title);
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
+            stage.setResizable(false);
         }catch (Exception e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
