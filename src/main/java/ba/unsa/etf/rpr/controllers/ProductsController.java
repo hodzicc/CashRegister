@@ -44,6 +44,8 @@ public class ProductsController {
     public void onAddClicked(MouseEvent mouseEvent) {
 
 
+
+
     }
 
     public void onUpdateClicked(MouseEvent mouseEvent) {
