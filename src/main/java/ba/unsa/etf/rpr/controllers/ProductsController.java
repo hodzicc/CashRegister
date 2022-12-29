@@ -13,6 +13,7 @@ import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
@@ -49,13 +50,19 @@ public class ProductsController {
 
     public void onDeleteClicked(MouseEvent mouseEvent) {
         Products prod=new Products();
-        if (productsTable.getSelectionModel().getSelectedItem() != null) {
-            prod= (Products) productsTable.getSelectionModel().getSelectedItem();
-            ProductsDAOSQLImpl impl= new ProductsDAOSQLImpl();
-            impl.delete(prod.getId());
-        }
 
-
+            if (productsTable.getSelectionModel().getSelectedItem() != null) {
+                prod = (Products) productsTable.getSelectionModel().getSelectedItem();
+            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete");
+            Optional<ButtonType> result = confirmation.showAndWait();
+            if (!result.get().getButtonData().isCancelButton()){
+                ProductsDAOSQLImpl impl = new ProductsDAOSQLImpl();
+                impl.delete(prod.getId());
+                refreshTable();
+            }
+            }
+            else
+                new Alert(Alert.AlertType.ERROR,"You have to select an id", ButtonType.OK).show();
 
     }
 
