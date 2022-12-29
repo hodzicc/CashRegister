@@ -3,9 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Products;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -50,5 +48,25 @@ public class AddProductController {
     }
 
     public void onSaveClicked(MouseEvent mouseEvent) {
+
+         ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
+        String name = nameField.getText();
+        Double price = Double.valueOf(priceField.getText());
+        int left = Integer.parseInt(leftField.getText());
+
+        Products prod = new Products();
+        prod.setName(name);
+        prod.setPrice(price);
+        prod.setLeftInStock(left);
+
+        sqlimpl.add(prod);
+
+        new Alert(Alert.AlertType.NONE,"New product added successfully", ButtonType.OK).show();
+
+        Node n = (Node) mouseEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
+
+
     }
 }
