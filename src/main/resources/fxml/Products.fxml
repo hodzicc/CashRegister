@@ -15,10 +15,10 @@
    <children>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="1">
         <buttons>
-          <Button fx:id="addBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="ADD" />
-            <Button fx:id="UpdateBtn" mnemonicParsing="false" text="UPDATE" />
-            <Button fx:id="DeleteBtn" mnemonicParsing="false" text="DELETE" />
-            <Button fx:id="ExitBtn" mnemonicParsing="false" text="EXIT">
+          <Button fx:id="addBtn" mnemonicParsing="false" onMouseClicked="#onAddClicked" prefHeight="25.0" prefWidth="197.0" text="ADD" />
+            <Button fx:id="UpdateBtn" mnemonicParsing="false" onMouseClicked="#onUpdateClicked" text="UPDATE" />
+            <Button fx:id="DeleteBtn" mnemonicParsing="false" onMouseClicked="#onDeleteClicked" text="DELETE" />
+            <Button fx:id="ExitBtn" mnemonicParsing="false" onMouseClicked="#onExitClicked" text="EXIT">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></Button>

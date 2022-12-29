@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +33,23 @@ public class ProductsController {
 
         ProductsDAOSQLImpl products = new ProductsDAOSQLImpl();
 
+
         productsTable.setItems(FXCollections.observableList(products.getAll()));
         productsTable.refresh();
 
+    }
 
+
+    public void onAddClicked(MouseEvent mouseEvent) {
+    }
+
+    public void onUpdateClicked(MouseEvent mouseEvent) {
+    }
+
+    public void onDeleteClicked(MouseEvent mouseEvent) {
+    }
+
+    public void onExitClicked(MouseEvent mouseEvent) {
     }
 }
+
