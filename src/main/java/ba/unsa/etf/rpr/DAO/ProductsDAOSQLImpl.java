@@ -105,6 +105,7 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
     public void delete(int id) {
 
         String delete = "DELETE FROM Products WHERE ID_Product = ?";
+
         try{
             PreparedStatement stmt = this.connection.prepareStatement(delete, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, id);
