@@ -90,6 +90,8 @@ public class UserRegistrationController {
         empl.setAdmin(isAdmin);
 
         sqlimpl.add(empl);
+
+
         Node n = (Node) mouseEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
