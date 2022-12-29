@@ -118,7 +118,7 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
     @Override
     public List<Products> getAll() {
 
-         String query = "SELECT * FROM products";
+         String query = "SELECT * FROM Products";
         List<Products> products = new ArrayList<Products>();
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
