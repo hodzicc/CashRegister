@@ -27,7 +27,7 @@ public class ProductsController {
     public TableColumn<Products, Double> ProductPriceCol;
     public TableColumn<Products, Integer> LeftInStockCol;
 
-    public void initialize(){
+    public void initialize() {
 
 
         ProductIdCol.setCellValueFactory(new PropertyValueFactory<Products, Integer>("id"));
@@ -35,16 +35,12 @@ public class ProductsController {
         ProductPriceCol.setCellValueFactory(new PropertyValueFactory<Products, Double>("price"));
         LeftInStockCol.setCellValueFactory(new PropertyValueFactory<Products, Integer>("leftInStock"));
 
-        ProductsDAOSQLImpl products = new ProductsDAOSQLImpl();
-
-
-        productsTable.setItems(FXCollections.observableList(products.getAll()));
-        productsTable.refresh();
+        refreshTable();
 
     }
 
-
     public void onAddClicked(MouseEvent mouseEvent) {
+
 
     }
 
@@ -52,6 +48,15 @@ public class ProductsController {
     }
 
     public void onDeleteClicked(MouseEvent mouseEvent) {
+        Products prod=new Products();
+        if (productsTable.getSelectionModel().getSelectedItem() != null) {
+            prod= (Products) productsTable.getSelectionModel().getSelectedItem();
+            ProductsDAOSQLImpl impl= new ProductsDAOSQLImpl();
+            impl.delete(prod.getId());
+        }
+
+
+
     }
 
     public void onExitClicked(MouseEvent mouseEvent) {
@@ -70,6 +75,11 @@ public class ProductsController {
         }catch (Exception e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
+    }
+    public void refreshTable(){
+        ProductsDAOSQLImpl products = new ProductsDAOSQLImpl();
+        productsTable.setItems(FXCollections.observableList(products.getAll()));
+        productsTable.refresh();
     }
 }
 
