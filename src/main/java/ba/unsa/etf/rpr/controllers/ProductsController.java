@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -28,6 +29,7 @@ public class ProductsController {
     public TableColumn<Products, String> ProductNameCol;
     public TableColumn<Products, Double> ProductPriceCol;
     public TableColumn<Products, Integer> LeftInStockCol;
+    public GridPane ProductsPane;
 
     public void initialize() {
 
