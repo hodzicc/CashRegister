@@ -42,6 +42,7 @@ public class ProductsController {
     }
 
     public void onAddClicked(MouseEvent mouseEvent) {
+        openDialog("Add product", "/fxml/AddProduct.fxml",null);
 
 
 
