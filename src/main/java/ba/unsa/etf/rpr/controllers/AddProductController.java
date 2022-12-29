@@ -2,10 +2,12 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Products;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,9 @@ public class AddProductController {
 
 
     public void onCancelClicked(MouseEvent mouseEvent) {
+        Node n = (Node) mouseEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
     }
 
     public void onSaveClicked(MouseEvent mouseEvent) {
