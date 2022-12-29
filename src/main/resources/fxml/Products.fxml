@@ -15,10 +15,10 @@
    <children>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="1">
         <buttons>
-          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="ADD" />
-            <Button mnemonicParsing="false" text="UPDATE" />
-            <Button mnemonicParsing="false" text="DELETE" />
-            <Button mnemonicParsing="false" text="EXIT">
+          <Button fx:id="addBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="ADD" />
+            <Button fx:id="UpdateBtn" mnemonicParsing="false" text="UPDATE" />
+            <Button fx:id="DeleteBtn" mnemonicParsing="false" text="DELETE" />
+            <Button fx:id="ExitBtn" mnemonicParsing="false" text="EXIT">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></Button>
@@ -27,7 +27,7 @@
             <Insets right="20.0" />
          </GridPane.margin>
       </ButtonBar>
-      <TableView prefHeight="273.0" prefWidth="600.0">
+      <TableView fx:id="productsTable" prefHeight="273.0" prefWidth="600.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
