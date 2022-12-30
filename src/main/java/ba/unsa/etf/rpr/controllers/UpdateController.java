@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class UpdateController {
+    private int id;
 
     public Label idLabel;
     public Label nameLabel;
@@ -12,4 +13,12 @@ public class UpdateController {
     public TextField lisField;
     public Button saveBtn;
     public Button cancelBtn;
+
+    UpdateController(int id){
+        this.id=id;
+
+    }
+
+
+
 }
