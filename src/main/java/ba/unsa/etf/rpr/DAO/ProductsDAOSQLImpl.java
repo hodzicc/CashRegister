@@ -82,7 +82,7 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
     @Override
     public Products update(Products item) {
 
-        String insert = "UPDATE products SET Product_name = ?, Price = ?, LeftInStock = ? WHERE ID_product = ?";
+        String insert = "UPDATE Products SET Product_name = ?, Price = ?, LeftInStock = ? WHERE ID_product = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 
