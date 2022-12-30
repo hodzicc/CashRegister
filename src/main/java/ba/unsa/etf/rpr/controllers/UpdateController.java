@@ -15,7 +15,12 @@ public class UpdateController {
     public Button cancelBtn;
 
     UpdateController(int id){
+
         this.id=id;
+
+    }
+
+    public void initialize(){
 
     }
 
