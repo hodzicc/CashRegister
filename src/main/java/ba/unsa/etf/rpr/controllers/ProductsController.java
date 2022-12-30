@@ -50,6 +50,18 @@ public class ProductsController {
     }
 
     public void onUpdateClicked(MouseEvent mouseEvent) {
+        Products prod=new Products();
+
+        if (productsTable.getSelectionModel().getSelectedItem() != null) {
+
+            prod = (Products) productsTable.getSelectionModel().getSelectedItem();
+            Object controller = new UpdateController(prod.getId());
+            openDialog("Update product", "/fxml/UpdateProduct.fxml",controller);
+
+        }
+        else
+            new Alert(Alert.AlertType.ERROR,"You have to select an id", ButtonType.OK).show();
+
     }
 
     public void onDeleteClicked(MouseEvent mouseEvent) {
