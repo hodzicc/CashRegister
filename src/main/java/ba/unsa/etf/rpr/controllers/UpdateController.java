@@ -2,10 +2,10 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Products;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class UpdateController {
     private int id;
@@ -35,6 +35,27 @@ public class UpdateController {
 
 
     public void onSaveClicked(MouseEvent mouseEvent) {
+
+        ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
+        String name = nameLabel.getText();
+        Double price = Double.valueOf(priceField.getText());
+        int left = Integer.parseInt(lisField.getText());
+
+        Products prod = new Products();
+        prod.setId(id);
+        prod.setName(name);
+        prod.setPrice(price);
+        prod.setLeftInStock(left);
+
+        sqlimpl.update(prod);
+
+        new Alert(Alert.AlertType.NONE,"Product updated successfully", ButtonType.OK).show();
+
+        Node n = (Node) mouseEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
+
+
     }
 
     public void onCancelClicked(MouseEvent mouseEvent) {
