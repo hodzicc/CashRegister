@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class UpdateController {
-    private int id;
+    private Integer id;
 
     public Label idLabel;
     public Label nameLabel;
@@ -17,7 +17,7 @@ public class UpdateController {
     public Button saveBtn;
     public Button cancelBtn;
 
-    UpdateController(int id){
+    UpdateController(Integer id){
 
         this.id=id;
 
