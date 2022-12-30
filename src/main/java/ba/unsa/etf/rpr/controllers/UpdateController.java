@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
+import ba.unsa.etf.rpr.domain.Products;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -22,8 +24,14 @@ public class UpdateController {
 
     public void initialize(){
 
+        Products prod = new Products();
+        ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
+        prod = sqlimpl.getById(id);
+        idLabel.setText(String.valueOf(prod.getId()));
+        nameLabel.setText(prod.getName());
+        priceField.setText(String.valueOf(prod.getPrice()));
+        lisField.setText(String.valueOf(prod.getLeftInStock()));
     }
-
 
 
 }
