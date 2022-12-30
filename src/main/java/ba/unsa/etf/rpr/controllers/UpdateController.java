@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.domain.Products;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class UpdateController {
     private int id;
@@ -23,7 +24,6 @@ public class UpdateController {
     }
 
     public void initialize(){
-
         Products prod = new Products();
         ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
         prod = sqlimpl.getById(id);
@@ -34,4 +34,9 @@ public class UpdateController {
     }
 
 
+    public void onSaveClicked(MouseEvent mouseEvent) {
+    }
+
+    public void onCancelClicked(MouseEvent mouseEvent) {
+    }
 }

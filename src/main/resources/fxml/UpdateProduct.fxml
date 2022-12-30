@@ -73,7 +73,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="saveBtn" mnemonicParsing="false" text="SAVE" GridPane.rowIndex="4">
+      <Button fx:id="saveBtn" mnemonicParsing="false" onMouseClicked="#onSaveClicked" text="SAVE" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="20.0" left="100.0" right="20.0" top="20.0" />
          </GridPane.margin>
@@ -81,7 +81,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="cancelBtn" mnemonicParsing="false" text="CANCEL" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <Button fx:id="cancelBtn" mnemonicParsing="false" onMouseClicked="#onCancelClicked" text="CANCEL" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="20.0" left="100.0" right="20.0" top="20.0" />
          </GridPane.margin>
