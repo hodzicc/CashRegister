@@ -8,9 +8,11 @@ import ba.unsa.etf.rpr.domain.Receipt_Total;
 import ba.unsa.etf.rpr.domain.Receipts;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,23 +52,6 @@ public class MakeReceiptController {
             ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
              Products prod = new Products();
 
-/*
-
-        int ok = 0;
-
-            for(Products p: finalProd) {
-
-                if (p.getId()==Integer.parseInt(newValue)) {
-                    ok=1;
-                   break;
-                }
-
-            }
-            if(ok==1)
-            checkIdLabel.setText("");
-            else checkIdLabel.setText("There is no product with that id");
-
-             */
            prod= sqlimpl.getById(Integer.parseInt(newValue));
             if(prod==null){
                 checkIdLabel.setText("There is no product with that id");
@@ -145,6 +130,9 @@ public class MakeReceiptController {
     }
 
     public void onExitClicked(ActionEvent actionEvent) {
+        Node n = (Node) actionEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
 
     }
 
