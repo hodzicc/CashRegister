@@ -28,13 +28,13 @@ public class MakeReceiptController {
     public void initialize(){
 
 
-        ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
-        List<Products> prod = new ArrayList<>();
-        prod = sqlimpl.getAll();
 
-        List<Products> finalProd= prod;
+
 
         idField.textProperty().addListener((obs, oldValue, newValue)->{
+            ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
+             Products prod = new Products();
+            /*
         int ok = 0;
 
             for(Products p: finalProd) {
@@ -49,7 +49,29 @@ public class MakeReceiptController {
             checkIdLabel.setText("");
             else checkIdLabel.setText("There is no product with that id");
 
+             */
+            prod= sqlimpl.getById(Integer.parseInt(newValue));
+            if(prod==null)
+                checkIdLabel.setText("There is no product with that id");
+            else  checkIdLabel.setText("");
+
+
+
+
+
         });
+
+        quantityField.textProperty().addListener((obs, oldValue, newValue)->{
+          ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
+           Products prod = new Products();
+             prod= sqlimpl.getById(Integer.parseInt(idField.getText()));
+             if(prod.getLeftInStock()<Integer.parseInt(newValue))
+                 checkQuantityLabel.setText("There is not enough items left");
+             else checkQuantityLabel.setText("");
+
+        });
+
+
 
 
 
