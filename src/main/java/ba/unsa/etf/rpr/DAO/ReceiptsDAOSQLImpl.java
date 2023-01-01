@@ -27,7 +27,7 @@ public class ReceiptsDAOSQLImpl implements ReceiptsDAO {
     @Override
     public Receipts add(Receipts item) {
 
-        String insert = "INSERT INTO Receipts(idReceipts, idProduct, Quantity, LineTotal) VALUES(?)";
+        String insert = "INSERT INTO Receipts(idReceipts, idProduct, Quantity, LineTotal) VALUES(?,?,?,?)";
 
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
