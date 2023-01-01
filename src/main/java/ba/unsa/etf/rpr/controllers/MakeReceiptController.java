@@ -41,7 +41,8 @@ public class MakeReceiptController {
         ReceiptsDAOSQLImpl del = new ReceiptsDAOSQLImpl();
         del.delete(1);
 
-        nameCol.setCellValueFactory(new PropertyValueFactory<Receipts, Integer>("idP"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<Receipts, String>("name"));
+        unitPriceCol.setCellValueFactory(new PropertyValueFactory<Receipts,Double>("unitPrice"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<Receipts, Integer>("Quantity"));
         totalCol.setCellValueFactory(new PropertyValueFactory<Receipts, Double>("LineTotal"));
 
@@ -98,6 +99,8 @@ public class MakeReceiptController {
             ProductsDAOSQLImpl s = new ProductsDAOSQLImpl();
             prod = s.getById(idp);
             item.setLineTotal(prod.getPrice() * quan);
+
+
 
             ReceiptsDAOSQLImpl receipts = new ReceiptsDAOSQLImpl();
             receipts.add(item);
