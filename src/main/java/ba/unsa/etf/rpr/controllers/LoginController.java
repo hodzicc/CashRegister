@@ -36,7 +36,7 @@ public class LoginController {
         }
         else if(!empl.isAdmin() && empl.getPassword().equals(password))
         {
-            new Alert(Alert.AlertType.CONFIRMATION, "Korisnik", ButtonType.OK).show();
+            openDialog("Receipts", "/fxml/MakeReceipt.fxml",null);
         }
         else{
             new Alert(Alert.AlertType.ERROR, "Pogrešan password", ButtonType.OK).show();
