@@ -25,7 +25,7 @@ public class ProductsDAOSQLImpl implements ProductsDAO {
     }
     @Override
     public Products getById(int id)  {
-        String query = "SELECT * FROM products WHERE ID_Product = ?";
+        String query = "SELECT * FROM Products WHERE ID_Product = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);
