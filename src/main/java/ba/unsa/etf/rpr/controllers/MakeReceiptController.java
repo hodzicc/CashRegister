@@ -100,7 +100,8 @@ public class MakeReceiptController {
             prod = s.getById(idp);
             item.setLineTotal(prod.getPrice() * quan);
 
-
+            item.setUnitPrice(prod.getPrice());
+            item.setName(prod.getName());
 
             ReceiptsDAOSQLImpl receipts = new ReceiptsDAOSQLImpl();
             receipts.add(item);
