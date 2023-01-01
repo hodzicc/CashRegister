@@ -30,7 +30,7 @@ public class ReceiptsDAOSQLImpl implements ReceiptsDAO {
         String insert = "INSERT INTO Receipts(idReceipts, idProduct, Quantity, LineTotal) VALUES(?,?,?,?)";
 
         try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = this.connection.prepareStatement(insert);
 
 
             stmt.setInt(1, item.getIdR());
@@ -40,10 +40,6 @@ public class ReceiptsDAOSQLImpl implements ReceiptsDAO {
 
             stmt.executeUpdate();
 
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-
-            item.setIdR(rs.getInt(1));
             return item;
 
         }catch (SQLException e){
