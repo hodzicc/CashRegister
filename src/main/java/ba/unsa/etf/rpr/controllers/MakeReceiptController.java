@@ -18,6 +18,10 @@ public class MakeReceiptController {
     public TableColumn unitPriceCol;
     public TableColumn nameCol;
     public TableView productsTable;
+    public void initialize(){
+
+
+    }
 
     public void onAddClicked(ActionEvent actionEvent) {
     }
