@@ -9,6 +9,25 @@ public class Receipts {
     private int Quantity;
     private double LineTotal;
 
+    private String name;
+    private double unitPrice;
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getIdR() {
         return idR;
     }
