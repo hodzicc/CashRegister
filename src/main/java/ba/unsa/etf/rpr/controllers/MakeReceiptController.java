@@ -9,6 +9,7 @@ import ba.unsa.etf.rpr.domain.Receipts;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class MakeReceiptController {
 
+    public TableColumn quantityCol;
     private int id;
     public Button exitBtn;
     public Button makeBtn;
@@ -25,12 +27,18 @@ public class MakeReceiptController {
     public TextField quantityField;
     public Label checkIdLabel;
     public TextField idField;
-    public VBox quantityCol;
+
     public TableColumn totalCol;
-    public TableColumn unitPriceCol;
+
     public TableColumn nameCol;
     public TableView productsTable;
     public void initialize(){
+
+        nameCol.setCellValueFactory(new PropertyValueFactory<Receipts, Integer>("idP"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<Receipts, Integer>("Quantity"));
+        totalCol.setCellValueFactory(new PropertyValueFactory<Receipts, Double>("LineTotal"));
+
+        refreshTable();
 
         Receipt_TotalDAOSQLImpl sql = new Receipt_TotalDAOSQLImpl();
         Receipt_Total r = new Receipt_Total();

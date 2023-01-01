@@ -18,11 +18,11 @@
       <TableView fx:id="productsTable" prefHeight="157.0" prefWidth="636.0" GridPane.rowIndex="1">
         <columns>
           <TableColumn fx:id="nameCol" prefWidth="232.0" text="Product id" />
-            <TableColumn prefWidth="245.0" text="Quantity" />
+            <TableColumn fx:id="quantityCol" prefWidth="245.0" text="Quantity" />
             <TableColumn fx:id="totalCol" prefWidth="259.0" text="Line total" />
         </columns>
       </TableView>
-      <VBox fx:id="quantityCol" prefHeight="204.0" prefWidth="636.0">
+      <VBox  prefHeight="204.0" prefWidth="636.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="574.0">
                <children>
