@@ -22,6 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MakeReceiptController {
 
     public TableColumn quantityCol;
+    public TableColumn unitPriceCol;
     private int id;
     private int okk;
     public Button exitBtn;
@@ -62,10 +63,6 @@ public class MakeReceiptController {
                 okk=1;
             }
 
-
-
-
-
         });
 
         quantityField.textProperty().addListener((obs, oldValue, newValue)->{
@@ -83,12 +80,6 @@ public class MakeReceiptController {
              }
 
         });
-
-
-
-
-
-
 
     }
 
@@ -120,7 +111,6 @@ public class MakeReceiptController {
         }
         else
             new Alert(Alert.AlertType.ERROR,"You have to input id and quantity", ButtonType.OK).show();
-
 
 
     }
