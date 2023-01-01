@@ -20,6 +20,7 @@ public class MakeReceiptController {
 
     public TableColumn quantityCol;
     private int id;
+    private int okk;
     public Button exitBtn;
     public Button makeBtn;
     public Button addBtn;
@@ -68,9 +69,14 @@ public class MakeReceiptController {
 
              */
             prod= sqlimpl.getById(Integer.parseInt(newValue));
-            if(prod==null)
+            if(prod==null){
                 checkIdLabel.setText("There is no product with that id");
-            else  checkIdLabel.setText("");
+                okk=0;
+            }
+            else  {
+                checkIdLabel.setText("");
+                okk=1;
+            }
 
 
 
@@ -82,9 +88,15 @@ public class MakeReceiptController {
           ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
            Products prod = new Products();
              prod= sqlimpl.getById(Integer.parseInt(idField.getText()));
-             if(prod.getLeftInStock()<Integer.parseInt(newValue))
+             if(prod.getLeftInStock()<Integer.parseInt(newValue)) {
+                 okk=0;
                  checkQuantityLabel.setText("There is not enough items left");
-             else checkQuantityLabel.setText("");
+             }
+             else
+             {
+                 okk=1;
+                 checkQuantityLabel.setText("");
+             }
 
         });
 
@@ -97,20 +109,32 @@ public class MakeReceiptController {
     }
 
     public void onAddClicked(ActionEvent actionEvent) {
-        Receipts item = new Receipts();
-        item.setIdR(id);
-        int idp = Integer.parseInt(idField.getText());
-        item.setIdP(idp);
-        int quan = Integer.parseInt(quantityField.getText());
-        item.setQuantity(quan);
+        if (okk == 1) {
 
-        Products prod = new Products();
-        ProductsDAOSQLImpl s = new ProductsDAOSQLImpl();
-        prod = s.getById(idp);
-        item.setLineTotal(prod.getPrice()*quan);
+            Receipts item = new Receipts();
+            item.setIdR(id);
+            int idp = Integer.parseInt(idField.getText());
+            item.setIdP(idp);
+            int quan = Integer.parseInt(quantityField.getText());
+            item.setQuantity(quan);
 
-        ReceiptsDAOSQLImpl receipts = new ReceiptsDAOSQLImpl();
-        receipts.add(item);
+            Products prod = new Products();
+            ProductsDAOSQLImpl s = new ProductsDAOSQLImpl();
+            prod = s.getById(idp);
+            item.setLineTotal(prod.getPrice() * quan);
+
+            ReceiptsDAOSQLImpl receipts = new ReceiptsDAOSQLImpl();
+            receipts.add(item);
+            refreshTable();
+            idField.setText("");
+            quantityField.setText("");
+
+            int left = prod.getLeftInStock();
+            prod.setLeftInStock(left-quan);
+            s.update(prod);
+        }
+        else
+            new Alert(Alert.AlertType.ERROR,"You have to input id and quantity", ButtonType.OK).show();
 
     }
 
