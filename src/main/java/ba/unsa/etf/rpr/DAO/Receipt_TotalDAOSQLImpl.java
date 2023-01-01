@@ -30,7 +30,7 @@ public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
         String insert = "INSERT INTO Receipt_total(Total, Date, Employee_ID) VALUES(?,?,?)";
 
         try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = this.connection.prepareStatement(insert);
 
 
 
@@ -40,10 +40,6 @@ public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
 
             stmt.executeUpdate();
 
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-
-            item.setId(rs.getInt(1));
             return item;
 
         }catch (SQLException e){
