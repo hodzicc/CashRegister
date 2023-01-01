@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -34,6 +35,8 @@ public class MakeReceiptController {
     public TableColumn nameCol;
     public TableView productsTable;
     public void initialize(){
+        ReceiptsDAOSQLImpl del = new ReceiptsDAOSQLImpl();
+        del.delete(1);
 
         nameCol.setCellValueFactory(new PropertyValueFactory<Receipts, Integer>("idP"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<Receipts, Integer>("Quantity"));
@@ -41,18 +44,14 @@ public class MakeReceiptController {
 
         refreshTable();
 
-        Receipt_TotalDAOSQLImpl sql = new Receipt_TotalDAOSQLImpl();
-        Receipt_Total r = new Receipt_Total();
-        sql.add(r);
-        List<Receipt_Total> rec = new ArrayList<>();
-        rec=sql.getAll();
-        Receipt_Total r1= rec.get(rec.size()-1);
-        id=r1.getId();
+        id=1;
 
         idField.textProperty().addListener((obs, oldValue, newValue)->{
             ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
              Products prod = new Products();
-            /*
+
+/*
+
         int ok = 0;
 
             for(Products p: finalProd) {
@@ -68,7 +67,7 @@ public class MakeReceiptController {
             else checkIdLabel.setText("There is no product with that id");
 
              */
-            prod= sqlimpl.getById(Integer.parseInt(newValue));
+           prod= sqlimpl.getById(Integer.parseInt(newValue));
             if(prod==null){
                 checkIdLabel.setText("There is no product with that id");
                 okk=0;
@@ -109,6 +108,7 @@ public class MakeReceiptController {
     }
 
     public void onAddClicked(ActionEvent actionEvent) {
+
         if (okk == 1) {
 
             Receipts item = new Receipts();
@@ -136,17 +136,24 @@ public class MakeReceiptController {
         else
             new Alert(Alert.AlertType.ERROR,"You have to input id and quantity", ButtonType.OK).show();
 
+
+
     }
 
     public void onMakeClicked(ActionEvent actionEvent) {
+
     }
 
     public void onExitClicked(ActionEvent actionEvent) {
+
     }
 
     public void refreshTable(){
+
         ReceiptsDAOSQLImpl receipts = new ReceiptsDAOSQLImpl();
         productsTable.setItems(FXCollections.observableList(receipts.getAll()));
         productsTable.refresh();
+
+
     }
 }
