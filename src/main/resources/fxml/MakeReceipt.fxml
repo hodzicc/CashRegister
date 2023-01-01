@@ -17,12 +17,13 @@
    <children>
       <TableView fx:id="productsTable" prefHeight="157.0" prefWidth="636.0" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="nameCol" prefWidth="232.0" text="Product id" />
-            <TableColumn fx:id="quantityCol" prefWidth="245.0" text="Quantity" />
-            <TableColumn fx:id="totalCol" prefWidth="259.0" text="Line total" />
+          <TableColumn fx:id="nameCol" prefWidth="236.0" text="Product name" />
+            <TableColumn fx:id="unitPriceCol" prefWidth="154.0" text="Unit Price" />
+            <TableColumn fx:id="quantityCol" prefWidth="169.0" text="Quantity" />
+            <TableColumn fx:id="totalCol" prefWidth="177.0" text="Line total" />
         </columns>
       </TableView>
-      <VBox  prefHeight="204.0" prefWidth="636.0">
+      <VBox prefHeight="204.0" prefWidth="636.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="574.0">
                <children>
