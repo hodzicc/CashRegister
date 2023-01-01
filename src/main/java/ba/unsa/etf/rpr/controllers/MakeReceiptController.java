@@ -1,7 +1,12 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
+import ba.unsa.etf.rpr.DAO.Receipt_TotalDAOSQLImpl;
+import ba.unsa.etf.rpr.DAO.ReceiptsDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Products;
+import ba.unsa.etf.rpr.domain.Receipt_Total;
+import ba.unsa.etf.rpr.domain.Receipts;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -27,9 +32,13 @@ public class MakeReceiptController {
     public TableView productsTable;
     public void initialize(){
 
-
-
-
+        Receipt_TotalDAOSQLImpl sql = new Receipt_TotalDAOSQLImpl();
+        Receipt_Total r = new Receipt_Total();
+        sql.add(r);
+        List<Receipt_Total> rec = new ArrayList<>();
+        rec=sql.getAll();
+        Receipt_Total r1= rec.get(rec.size()-1);
+        id=r1.getId();
 
         idField.textProperty().addListener((obs, oldValue, newValue)->{
             ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
@@ -80,11 +89,32 @@ public class MakeReceiptController {
     }
 
     public void onAddClicked(ActionEvent actionEvent) {
+        Receipts item = new Receipts();
+        item.setIdR(id);
+        int idp = Integer.parseInt(idField.getText());
+        item.setIdP(idp);
+        int quan = Integer.parseInt(quantityField.getText());
+        item.setQuantity(quan);
+
+        Products prod = new Products();
+        ProductsDAOSQLImpl s = new ProductsDAOSQLImpl();
+        prod = s.getById(idp);
+        item.setLineTotal(prod.getPrice()*quan);
+
+        ReceiptsDAOSQLImpl receipts = new ReceiptsDAOSQLImpl();
+        receipts.add(item);
+
     }
 
     public void onMakeClicked(ActionEvent actionEvent) {
     }
 
     public void onExitClicked(ActionEvent actionEvent) {
+    }
+
+    public void refreshTable(){
+        ReceiptsDAOSQLImpl receipts = new ReceiptsDAOSQLImpl();
+        productsTable.setItems(FXCollections.observableList(receipts.getAll()));
+        productsTable.refresh();
     }
 }
