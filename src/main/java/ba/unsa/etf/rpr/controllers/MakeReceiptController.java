@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
@@ -17,4 +18,13 @@ public class MakeReceiptController {
     public TableColumn unitPriceCol;
     public TableColumn nameCol;
     public TableView productsTable;
+
+    public void onAddClicked(ActionEvent actionEvent) {
+    }
+
+    public void onMakeClicked(ActionEvent actionEvent) {
+    }
+
+    public void onExitClicked(ActionEvent actionEvent) {
+    }
 }

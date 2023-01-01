@@ -63,7 +63,7 @@
                   <Insets left="400.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="addBtn" mnemonicParsing="false" text="ADD NEXT ARTICLE">
+            <Button fx:id="addBtn" mnemonicParsing="false" onAction="#onAddClicked" text="ADD NEXT ARTICLE">
                <VBox.margin>
                   <Insets bottom="20.0" left="300.0" right="20.0" top="20.0" />
                </VBox.margin>
@@ -72,10 +72,10 @@
       </VBox>
       <BorderPane prefHeight="133.0" prefWidth="733.0" GridPane.rowIndex="2">
          <center>
-            <Button fx:id="makeBtn" mnemonicParsing="false" text="MAKE RECEIPT" BorderPane.alignment="CENTER" />
+            <Button fx:id="makeBtn" mnemonicParsing="false" onAction="#onMakeClicked" text="MAKE RECEIPT" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
-            <Button fx:id="exitBtn" mnemonicParsing="false" text="EXIT" BorderPane.alignment="CENTER" />
+            <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#onExitClicked" text="EXIT" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>
