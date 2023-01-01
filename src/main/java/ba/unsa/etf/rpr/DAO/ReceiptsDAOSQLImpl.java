@@ -81,6 +81,8 @@ public class ReceiptsDAOSQLImpl implements ReceiptsDAO {
 
                 receipt.setIdR(rs.getInt("idReceipts"));
                 receipt.setIdP(rs.getInt("idProduct"));
+                receipt.setName(rs.getString("Name"));
+                receipt.setUnitPrice(rs.getDouble("UnitPrice"));
                 receipt.setQuantity(rs.getInt("Quantity"));
                 receipt.setLineTotal(rs.getDouble("LineTotal"));
 
