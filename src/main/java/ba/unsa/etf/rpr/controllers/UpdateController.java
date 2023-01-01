@@ -17,7 +17,7 @@ public class UpdateController {
     public Button saveBtn;
     public Button cancelBtn;
 
-    UpdateController(Integer id){
+     UpdateController(Integer id){
 
         this.id=id;
 
@@ -32,6 +32,7 @@ public class UpdateController {
         priceField.setText(String.valueOf(prod.getPrice()));
         lisField.setText(String.valueOf(prod.getLeftInStock()));
     }
+
 
 
     public void onSaveClicked(MouseEvent mouseEvent) {
@@ -49,15 +50,19 @@ public class UpdateController {
 
         sqlimpl.update(prod);
 
-        new Alert(Alert.AlertType.NONE,"Product updated successfully", ButtonType.OK).show();
 
         Node n = (Node) mouseEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
 
+        new Alert(Alert.AlertType.NONE,"Product updated successfully", ButtonType.OK).show();
 
     }
 
+
     public void onCancelClicked(MouseEvent mouseEvent) {
+        Node n = (Node) mouseEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
     }
 }

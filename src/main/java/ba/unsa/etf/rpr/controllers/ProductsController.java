@@ -55,7 +55,7 @@ public class ProductsController {
         if (productsTable.getSelectionModel().getSelectedItem() != null) {
 
             prod = (Products) productsTable.getSelectionModel().getSelectedItem();
-            Object controller = new UpdateController(prod.getId());
+            UpdateController controller = new UpdateController(prod.getId());
             openDialog("Update product", "/fxml/UpdateProduct.fxml",controller);
 
         }
@@ -94,6 +94,7 @@ public class ProductsController {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
             loader.setController(controller);
+
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setTitle(title);
