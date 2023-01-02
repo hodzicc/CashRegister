@@ -8,8 +8,6 @@ public class Receipt_Total {
     int id;
     double total;
     Date date;
-    int Eid;
-
     public int getId() {
         return id;
     }
@@ -34,13 +32,6 @@ public class Receipt_Total {
         this.date = date;
     }
 
-    public int getEid() {
-        return Eid;
-    }
-
-    public void setEid(int eid) {
-        Eid = eid;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -52,7 +43,7 @@ public class Receipt_Total {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id,total,date,Eid);
+        return Objects.hash(id,total,date);
     }
 
     @Override
@@ -61,7 +52,6 @@ public class Receipt_Total {
                 "id=" + id +
                 ", total=" + total +
                 ", date=" + date +
-                ", Eid=" + Eid +
                 '}';
     }
 }
