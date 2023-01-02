@@ -17,7 +17,7 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <right>
-            <Button mnemonicParsing="false" text="CLOSE" BorderPane.alignment="CENTER">
+            <Button fx:id="closeBtn" mnemonicParsing="false" text="CLOSE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </BorderPane.margin>
@@ -41,12 +41,12 @@
             </Label>
          </center>
       </BorderPane>
-      <TableView prefHeight="138.0" prefWidth="600.0" GridPane.rowIndex="1">
+      <TableView fx:id="productsTable" prefHeight="138.0" prefWidth="600.0" GridPane.rowIndex="1">
         <columns>
-          <TableColumn prefWidth="205.0" text="PRODUCT NAME" />
-          <TableColumn prefWidth="136.0" text="UNIT PRICE" />
-            <TableColumn prefWidth="141.0" text="QUANTITY" />
-            <TableColumn prefWidth="120.0" text="TOTAL" />
+          <TableColumn fx:id="nameCol" prefWidth="205.0" text="PRODUCT NAME" />
+          <TableColumn fx:id="priceCol" prefWidth="136.0" text="UNIT PRICE" />
+            <TableColumn fx:id="quantityCol" prefWidth="141.0" text="QUANTITY" />
+            <TableColumn fx:id="totalCol" prefWidth="120.0" text="TOTAL" />
         </columns>
       </TableView>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
