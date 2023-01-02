@@ -24,6 +24,8 @@ public class MakeReceiptController {
     public TableColumn quantityCol;
     public TableColumn unitPriceCol;
     private int id;
+
+    private int employee;
     private int okk;
     public Button exitBtn;
     public Button makeBtn;
@@ -37,6 +39,10 @@ public class MakeReceiptController {
 
     public TableColumn nameCol;
     public TableView productsTable;
+
+    public MakeReceiptController(int idemployee){
+        employee=idemployee;
+    }
     public void initialize(){
         ReceiptsDAOSQLImpl del = new ReceiptsDAOSQLImpl();
         del.delete(1);

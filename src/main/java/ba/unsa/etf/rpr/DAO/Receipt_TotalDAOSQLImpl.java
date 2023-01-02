@@ -27,16 +27,14 @@ public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
     }
     @Override
     public Receipt_Total add(Receipt_Total item) {
-        String insert = "INSERT INTO Receipt_total(Total, Date, Employee_ID) VALUES(?,?,?)";
+        String insert = "INSERT INTO Receipt_total(Total, Date) VALUES(?,?)";
 
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert);
 
 
-
             stmt.setDouble(1,item.getTotal());
             stmt.setDate(2, (Date) item.getDate());
-            stmt.setInt(3,item.getEid());
 
             stmt.executeUpdate();
 

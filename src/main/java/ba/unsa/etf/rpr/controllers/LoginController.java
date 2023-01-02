@@ -61,16 +61,7 @@ public class LoginController {
     }
 
     public void initialize(){
-/*
-        UsrnmLine.textProperty().addListener((obs, oldValue, newValue)->{
 
-            if(newValue.length()>=4)
-                UsrnmCheck.setText("");
-            else UsrnmCheck.setText("Username not valid");
-
-
-        });
-*/
         PasswordLine.textProperty().addListener((obs, oldValue, newValue)->{
 
             if(newValue.length()>=4)

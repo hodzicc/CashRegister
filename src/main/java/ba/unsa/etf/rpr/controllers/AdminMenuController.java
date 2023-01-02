@@ -21,6 +21,7 @@ public class AdminMenuController {
     }
 
     public void onReceiptsClicked(ActionEvent actionEvent) {
+
         openDialog("Receipts", "/fxml/MakeReceipt.fxml",null);
 
     }
