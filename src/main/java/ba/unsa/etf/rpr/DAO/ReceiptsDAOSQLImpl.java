@@ -37,8 +37,8 @@ public class ReceiptsDAOSQLImpl implements ReceiptsDAO {
             stmt.setInt(2,item.getIdP());
             stmt.setString(3,item.getName());
             stmt.setDouble(4,item.getUnitPrice());
-            stmt.setInt(3,item.getQuantity());
-            stmt.setDouble(4,item.getLineTotal());
+            stmt.setInt(5,item.getQuantity());
+            stmt.setDouble(6,item.getLineTotal());
 
             stmt.executeUpdate();
 
