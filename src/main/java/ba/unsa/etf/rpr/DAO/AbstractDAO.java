@@ -109,6 +109,10 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
         return columns.toString();
     }
 
+    public T getById(int id) throws CashRegisterException {
+        return executeQueryUnique("SELECT * FROM "+this.tableName+" WHERE id = ?", new Object[]{id});
+    }
+
 
 
 }
