@@ -14,4 +14,8 @@ public class ReceiptController {
     public TableColumn priceCol;
     public TableColumn quantityCol;
     public TableColumn totalCol;
+
+    public void initialize(){
+
+    }
 }
