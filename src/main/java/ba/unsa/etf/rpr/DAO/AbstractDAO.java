@@ -117,6 +117,17 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
         return executeQuery("SELECT * FROM "+ tableName, null);
     }
 
+    public void delete(int id) throws CashRegisterException {
+        String sql = "DELETE FROM "+tableName+" WHERE id = ?";
+        try{
+            PreparedStatement stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, id);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            throw new CashRegisterException(e.getMessage(), e);
+        }
+    }
+
 
 
 

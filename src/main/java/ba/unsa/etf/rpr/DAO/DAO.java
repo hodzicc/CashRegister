@@ -8,7 +8,7 @@ public interface DAO<T> {
 
     T add(T item);
 
-    void delete(int id);
+    void delete(int id) throws CashRegisterException;
 
     List<T> getAll() throws CashRegisterException;
 
