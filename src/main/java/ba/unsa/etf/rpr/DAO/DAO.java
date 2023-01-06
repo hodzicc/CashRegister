@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DAO<T> {
 
-    T add(T item);
+    T add(T item) throws CashRegisterException;
 
     void delete(int id) throws CashRegisterException;
 
