@@ -8,6 +8,11 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
     private static Connection connection = null;
     private String tableName;
 
+    public AbstractDAO(String tableName) {
+        this.tableName = tableName;
+        if(connection==null) createConnection();
+    }
+
     private static void createConnection(){
         if(AbstractDAO.connection==null) {
             try {
