@@ -40,9 +40,7 @@ public class MakeReceiptController {
     public TableColumn nameCol;
     public TableView productsTable;
 
-    public MakeReceiptController(int idemployee){
-        employee=idemployee;
-    }
+
     public void initialize(){
         ReceiptsDAOSQLImpl del = new ReceiptsDAOSQLImpl();
         del.delete(1);
@@ -122,10 +120,11 @@ public class MakeReceiptController {
         else
             new Alert(Alert.AlertType.ERROR,"You have to input id and quantity", ButtonType.OK).show();
 
-
     }
 
     public void onMakeClicked(ActionEvent actionEvent) {
+
+        
 
     }
 

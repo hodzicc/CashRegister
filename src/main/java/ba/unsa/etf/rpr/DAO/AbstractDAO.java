@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.DAO;
 
 import ba.unsa.etf.rpr.domain.Idable;
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.sql.*;
 import java.util.*;
@@ -44,5 +45,10 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
             }
         }
     }
+
+    public abstract T row2object(ResultSet rs) throws CashRegisterException;
+    public abstract Map<String, Object> object2row(T object);
+
+
 
 }
