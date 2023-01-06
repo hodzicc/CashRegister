@@ -33,4 +33,16 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
         return AbstractDAO.connection;
     }
 
+    public static void closeConnection() {
+        System.out.println("Closing connection");
+        if(connection!=null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("REMOVE CONNECTION METHOD ERROR: Unable to close connection on database");
+            }
+        }
+    }
+
 }
