@@ -113,6 +113,11 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
         return executeQueryUnique("SELECT * FROM "+this.tableName+" WHERE id = ?", new Object[]{id});
     }
 
+    public List<T> getAll() throws CashRegisterException{
+        return executeQuery("SELECT * FROM "+ tableName, null);
+    }
+
+
 
 
 }

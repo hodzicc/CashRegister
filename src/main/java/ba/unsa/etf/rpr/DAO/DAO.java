@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.DAO;
 
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
+
 import java.util.List;
 
 public interface DAO<T> {
@@ -8,7 +10,7 @@ public interface DAO<T> {
 
     void delete(int id);
 
-    List<T> getAll();
+    List<T> getAll() throws CashRegisterException;
 
 
 }
