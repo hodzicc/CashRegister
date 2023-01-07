@@ -1,14 +1,12 @@
 package ba.unsa.etf.rpr.DAO;
 
+import ba.unsa.etf.rpr.domain.Employees;
 import ba.unsa.etf.rpr.domain.Products;
 import ba.unsa.etf.rpr.DAO.ProductsDAO;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class ProductsDAOSQLImpl extends AbstractDAO<Products> implements ProductsDAO {
     private static ProductsDAOSQLImpl instance = null;
@@ -19,12 +17,34 @@ public class ProductsDAOSQLImpl extends AbstractDAO<Products> implements Product
 
     @Override
     public Products row2object(ResultSet rs) throws CashRegisterException {
-        return null;
+
+        try {
+            Products product = new Products();
+
+            product.setId(rs.getInt("ID_product"));
+            product.setName(rs.getString("Product_name"));
+            product.setPrice(rs.getDouble("Price"));
+            product.setLeftInStock(rs.getInt("LeftInStock"));
+
+            return product;
+
+
+        } catch (SQLException e) {
+            throw new CashRegisterException(e.getMessage(), e);
+        }
     }
 
     @Override
     public Map<String, Object> object2row(Products object) {
-        return null;
+
+         Map<String, Object> row = new TreeMap<>();
+         row.put("ID_product", object.getId());
+        row.put("Product_name", object.getName());
+        row.put("Price", object.getPrice());
+        row.put("LeftInStock", object.getLeftInStock());
+
+        return row;
+
     }
 
 
