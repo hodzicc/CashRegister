@@ -71,12 +71,15 @@ public class UserRegistrationController {
 
     }
 
-
-    public void onCancelClicked(MouseEvent mouseEvent) {
-
+    private void closeDialog(MouseEvent mouseEvent){
         Node n = (Node) mouseEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
+    }
+
+    public void onCancelClicked(MouseEvent mouseEvent) {
+
+       closeDialog(mouseEvent);
 
     }
 
@@ -97,11 +100,7 @@ public class UserRegistrationController {
 
         new Alert(Alert.AlertType.NONE,"New employee added successfully", ButtonType.OK).show();
 
-
-
-        Node n = (Node) mouseEvent.getSource();
-        Stage stage = (Stage) n.getScene().getWindow();
-        stage.close();
+        closeDialog(mouseEvent);
 
     }
 }
