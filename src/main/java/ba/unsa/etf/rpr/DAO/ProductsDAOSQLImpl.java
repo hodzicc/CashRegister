@@ -2,27 +2,31 @@ package ba.unsa.etf.rpr.DAO;
 
 import ba.unsa.etf.rpr.domain.Products;
 import ba.unsa.etf.rpr.DAO.ProductsDAO;
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
-public class ProductsDAOSQLImpl implements ProductsDAO {
-    private Connection connection;
+public class ProductsDAOSQLImpl extends AbstractDAO<Products> implements ProductsDAO {
+    private static ProductsDAOSQLImpl instance = null;
 
-    public ProductsDAOSQLImpl(){
-        try{
-            Properties p = new Properties();
-            p.load(ClassLoader.getSystemResource("application.properties").openStream());
-            String url = p.getProperty("db.connection_string");
-            String username = p.getProperty("db.username");
-            String password = p.getProperty("db.password");
-            this.connection = DriverManager.getConnection(url, username, password);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    private ProductsDAOSQLImpl(){
+          super("Products");
     }
+
+    @Override
+    public Products row2object(ResultSet rs) throws CashRegisterException {
+        return null;
+    }
+
+    @Override
+    public Map<String, Object> object2row(Products object) {
+        return null;
+    }
+
     @Override
     public Products getById(int id)  {
         String query = "SELECT * FROM Products WHERE ID_Product = ?";
