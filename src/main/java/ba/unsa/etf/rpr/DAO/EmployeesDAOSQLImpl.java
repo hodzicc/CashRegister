@@ -47,7 +47,13 @@ public class EmployeesDAOSQLImpl extends AbstractDAO<Employees> implements Emplo
 
     @Override
     public Map<String, Object> object2row(Employees object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("idEmployee", object.getId());
+        row.put("username", object.getName());
+        row.put("password", object.getPassword());
+        row.put("Name", object.getName());
+        row.put("Admin_access", object.isAdmin());
+        return row;
     }
 
     @Override
