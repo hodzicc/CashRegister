@@ -30,7 +30,19 @@ public class EmployeesDAOSQLImpl extends AbstractDAO<Employees> implements Emplo
 
     @Override
     public Employees row2object(ResultSet rs) throws CashRegisterException {
-        return null;
+        try {
+            Employees employee = new Employees();
+
+            employee.setId(rs.getInt("idEmployee"));
+            employee.setUsername(rs.getString("username"));
+            employee.setPassword(rs.getString("password"));
+            employee.setName(rs.getString("Name"));
+            employee.setAdmin(rs.getBoolean("Admin_access"));
+
+            return employee;
+        } catch (SQLException e) {
+            throw new CashRegisterException(e.getMessage(), e);
+        }
     }
 
     @Override
