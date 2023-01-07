@@ -77,6 +77,31 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
         }
     }
 
+    public double executeQueryDouble(String qry, Object[] params) throws CashRegisterException {
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(qry);
+            if (params != null) {
+                for (int i = 1; i <= params.length; i++) {
+                    stmt.setObject(i, params[i - 1]);
+                }
+            }
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+
+                double result = rs.getDouble(1);
+                return result;
+
+            }
+            else return 0;
+
+        }
+        catch (SQLException e) {
+            throw new CashRegisterException(e.getMessage(), e);
+        }
+
+
+    }
+
     private Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
         StringBuilder questions = new StringBuilder();
