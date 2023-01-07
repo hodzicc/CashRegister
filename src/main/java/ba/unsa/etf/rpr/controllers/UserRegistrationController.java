@@ -1,7 +1,9 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.DAO.EmployeesDAOSQLImpl;
+import ba.unsa.etf.rpr.business.EmployeesManager;
 import ba.unsa.etf.rpr.domain.Employees;
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRegistrationController {
+
+    private EmployeesManager manager = new EmployeesManager();
 
     public TextField UsernameField;
     public javafx.scene.control.PasswordField PasswordField;
@@ -23,11 +27,11 @@ public class UserRegistrationController {
     public CheckBox checkBoxAdmin;
 
 
-    public void initialize(){
+    public void initialize() throws CashRegisterException {
 
-        EmployeesDAOSQLImpl sqlimpl = new EmployeesDAOSQLImpl();
+
         List<Employees> empl = new ArrayList<>();
-        empl = sqlimpl.getAll();
+        empl = manager.getAll();
 
         List<Employees> finalEmpl = empl;
         NameField.textProperty().addListener((obs, oldValue, newValue)->{
@@ -76,8 +80,8 @@ public class UserRegistrationController {
 
     }
 
-    public void onSaveClicked(MouseEvent mouseEvent) {
-        EmployeesDAOSQLImpl sqlimpl = new EmployeesDAOSQLImpl();
+    public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
+
         String username = UsernameField.getText();
         String password = PasswordField.getText();
         String name = NameField.getText();
@@ -89,7 +93,7 @@ public class UserRegistrationController {
         empl.setPassword(password);
         empl.setAdmin(isAdmin);
 
-        sqlimpl.add(empl);
+        manager.add(empl);
 
         new Alert(Alert.AlertType.NONE,"New employee added successfully", ButtonType.OK).show();
 
