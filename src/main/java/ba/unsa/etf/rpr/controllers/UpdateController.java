@@ -54,9 +54,7 @@ public class UpdateController {
         manager.update(prod);
 
 
-        Node n = (Node) mouseEvent.getSource();
-        Stage stage = (Stage) n.getScene().getWindow();
-        stage.close();
+        closeDialog(mouseEvent);
 
         new Alert(Alert.AlertType.NONE,"Product updated successfully", ButtonType.OK).show();
 
@@ -64,6 +62,10 @@ public class UpdateController {
 
 
     public void onCancelClicked(MouseEvent mouseEvent) {
+        closeDialog(mouseEvent);
+    }
+
+    private void closeDialog(MouseEvent mouseEvent){
         Node n = (Node) mouseEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
