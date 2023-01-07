@@ -23,7 +23,7 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class ProductsController {
 
-    ProductsManager manager = new ProductsManager();
+    private ProductsManager manager = new ProductsManager();
     public Button addBtn;
     public Button UpdateBtn;
     public Button DeleteBtn;

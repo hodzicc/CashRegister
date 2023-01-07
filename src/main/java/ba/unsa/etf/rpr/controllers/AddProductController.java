@@ -1,7 +1,9 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
+import ba.unsa.etf.rpr.business.ProductsManager;
 import ba.unsa.etf.rpr.domain.Products;
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -12,6 +14,8 @@ import java.util.List;
 import java.util.*;
 
 public class AddProductController {
+
+    ProductsManager manager = new ProductsManager();
     public Button saveBtn;
     public Button cancelBtn;
     public TextField nameField;
@@ -19,11 +23,11 @@ public class AddProductController {
     public TextField leftField;
     public Label nameCheck;
 
-    public void initialize(){
+    public void initialize() throws CashRegisterException {
         
-        ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
+
         List<Products> prod = new ArrayList<>();
-        prod=sqlimpl.getAll();
+        prod=manager.getAll();
         List<Products> finalProd = prod;
         
         nameField.textProperty().addListener((obs, oldValue, newValue)->{
@@ -47,9 +51,8 @@ public class AddProductController {
         stage.close();
     }
 
-    public void onSaveClicked(MouseEvent mouseEvent) {
+    public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
 
-         ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
         String name = nameField.getText();
         Double price = Double.valueOf(priceField.getText());
         int left = Integer.parseInt(leftField.getText());
@@ -59,7 +62,7 @@ public class AddProductController {
         prod.setPrice(price);
         prod.setLeftInStock(left);
 
-        sqlimpl.add(prod);
+        manager.add(prod);
 
         new Alert(Alert.AlertType.NONE,"New product added successfully", ButtonType.OK).show();
 
