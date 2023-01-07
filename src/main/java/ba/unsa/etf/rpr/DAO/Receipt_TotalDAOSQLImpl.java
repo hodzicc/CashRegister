@@ -7,10 +7,8 @@ import ba.unsa.etf.rpr.domain.Receipts;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.sql.Date;
+import java.util.*;
 
 public class Receipt_TotalDAOSQLImpl extends AbstractDAO<Receipt_Total> implements  Receipt_TotalDAO{
 
@@ -119,12 +117,28 @@ public class Receipt_TotalDAOSQLImpl extends AbstractDAO<Receipt_Total> implemen
 
     @Override
     public Receipt_Total row2object(ResultSet rs) throws CashRegisterException {
-        return null;
+        try {
+            Receipt_Total receipt = new Receipt_Total();
+
+            receipt.setId(rs.getInt("ID_receipt"));
+            receipt.setTotal(rs.getDouble("Total"));
+            receipt.setDate(rs.getDate("Date"));
+            return receipt;
+
+        } catch (SQLException e) {
+            throw new CashRegisterException(e.getMessage(), e);
+        }
     }
 
     @Override
     public Map<String, Object> object2row(Receipt_Total object) {
-        return null;
+
+        Map<String, Object> row = new TreeMap<>();
+        row.put("ID_receipt", object.getId());
+        row.put("Total", object.getTotal());
+        row.put("Date", object.getDate());
+
+        return row;
     }
 
     @Override
