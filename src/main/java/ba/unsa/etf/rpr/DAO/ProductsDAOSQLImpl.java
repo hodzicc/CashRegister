@@ -15,6 +15,17 @@ public class ProductsDAOSQLImpl extends AbstractDAO<Products> implements Product
           super("Products");
     }
 
+    public static ProductsDAOSQLImpl getInstance(){
+        if(instance==null)
+            instance = new ProductsDAOSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
+    }
+
     @Override
     public Products row2object(ResultSet rs) throws CashRegisterException {
 
