@@ -56,6 +56,6 @@ public class ReceiptsDAOSQLImpl  extends AbstractDAO<Receipts> implements Receip
     }
 
     @Override
-    public Receipts getTotal(int idr) throws CashRegisterException {
-        return executeQueryUnique("SELECT SUM(LineTotal) FROM Receipts WHERE idReceipts = ?", new Object[]{idr});
+    public Double getTotal(int idr) throws CashRegisterException {
+        return executeQueryDouble("SELECT SUM(LineTotal) FROM Receipts WHERE idReceipts = ?", new Object[]{idr});
 }}
