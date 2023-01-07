@@ -2,27 +2,29 @@ package ba.unsa.etf.rpr.DAO;
 
 import ba.unsa.etf.rpr.domain.Employees;
 import ba.unsa.etf.rpr.domain.Products;
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
 
-public class EmployeesDAOSQLImpl implements EmployeesDAO{
+public class EmployeesDAOSQLImpl extends AbstractDAO<Employees> implements EmployeesDAO{
 
-    private Connection connection;
+    private static  EmployeesDAOSQLImpl instance = null;
 
-    public EmployeesDAOSQLImpl(){
-        try{
-            Properties p = new Properties();
-            p.load(ClassLoader.getSystemResource("application.properties").openStream());
-            String url = p.getProperty("db.connection_string");
-            String username = p.getProperty("db.username");
-            String password = p.getProperty("db.password");
-            this.connection = DriverManager.getConnection(url, username, password);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    private EmployeesDAOSQLImpl(){
+       super("Employees");
+    }
+
+    @Override
+    public Employees row2object(ResultSet rs) throws CashRegisterException {
+        return null;
+    }
+
+    @Override
+    public Map<String, Object> object2row(Employees object) {
+        return null;
     }
 
     @Override
