@@ -17,6 +17,17 @@ public class EmployeesDAOSQLImpl extends AbstractDAO<Employees> implements Emplo
        super("Employees");
     }
 
+    public static EmployeesDAOSQLImpl getInstance(){
+        if(instance==null)
+            instance = new EmployeesDAOSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
+    }
+
     @Override
     public Employees row2object(ResultSet rs) throws CashRegisterException {
         return null;
