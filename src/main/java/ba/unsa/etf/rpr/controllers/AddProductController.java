@@ -44,11 +44,14 @@ public class AddProductController {
         
     }
 
-
-    public void onCancelClicked(MouseEvent mouseEvent) {
+    private void closeDialog(MouseEvent mouseEvent){
         Node n = (Node) mouseEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
+    }
+
+    public void onCancelClicked(MouseEvent mouseEvent) {
+        closeDialog(mouseEvent);
     }
 
     public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
@@ -66,9 +69,7 @@ public class AddProductController {
 
         new Alert(Alert.AlertType.NONE,"New product added successfully", ButtonType.OK).show();
 
-        Node n = (Node) mouseEvent.getSource();
-        Stage stage = (Stage) n.getScene().getWindow();
-        stage.close();
+        closeDialog(mouseEvent);
 
 
     }
