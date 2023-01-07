@@ -1,7 +1,9 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.DAO.EmployeesDAOSQLImpl;
+import ba.unsa.etf.rpr.business.EmployeesManager;
 import ba.unsa.etf.rpr.domain.Employees;
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,17 +14,18 @@ import javafx.stage.StageStyle;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class LoginController {
+
+    private EmployeesManager manager = new EmployeesManager();
     public PasswordField PasswordLine;
     public TextField UsrnmLine;
     public Button LoginBtn;
     public Label PswrdCheck;
 
-    public void loginClick(ActionEvent actionEvent) {
+    public void loginClick(ActionEvent actionEvent) throws CashRegisterException {
         String username = new String(UsrnmLine.getText());
         String password = new String (PasswordLine.getText());
 
-        EmployeesDAOSQLImpl sqlimpl = new EmployeesDAOSQLImpl();
-        Employees empl = sqlimpl.getByUsername(username);
+        Employees empl = manager.getByUsername(username);
 
         if(empl==null)
         {
