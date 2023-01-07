@@ -1,7 +1,9 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
+import ba.unsa.etf.rpr.business.ProductsManager;
 import ba.unsa.etf.rpr.domain.Products;
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,6 +22,8 @@ import java.util.Optional;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class ProductsController {
+
+    ProductsManager manager = new ProductsManager();
     public Button addBtn;
     public Button UpdateBtn;
     public Button DeleteBtn;
@@ -31,7 +35,7 @@ public class ProductsController {
     public TableColumn<Products, Integer> LeftInStockCol;
     public GridPane ProductsPane;
 
-    public void initialize() {
+    public void initialize() throws CashRegisterException {
 
 
         ProductIdCol.setCellValueFactory(new PropertyValueFactory<Products, Integer>("id"));
@@ -64,7 +68,7 @@ public class ProductsController {
 
     }
 
-    public void onDeleteClicked(MouseEvent mouseEvent) {
+    public void onDeleteClicked(MouseEvent mouseEvent) throws CashRegisterException {
         Products prod=new Products();
 
             if (productsTable.getSelectionModel().getSelectedItem() != null) {
@@ -72,8 +76,7 @@ public class ProductsController {
             Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete");
             Optional<ButtonType> result = confirmation.showAndWait();
             if (!result.get().getButtonData().isCancelButton()){
-                ProductsDAOSQLImpl impl = new ProductsDAOSQLImpl();
-                impl.delete(prod.getId());
+                manager.delete(prod.getId());
                 refreshTable();
             }
             }
@@ -103,15 +106,18 @@ public class ProductsController {
             stage.setResizable(false);
             stage.setOnHiding(event -> {
                 ((Stage)ProductsPane.getScene().getWindow()).show();
-                refreshTable();
+                try {
+                    refreshTable();
+                } catch (CashRegisterException e) {
+                    throw new RuntimeException(e);
+                }
             });
         }catch (Exception e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-    public void refreshTable(){
-        ProductsDAOSQLImpl products = new ProductsDAOSQLImpl();
-        productsTable.setItems(FXCollections.observableList(products.getAll()));
+    public void refreshTable() throws CashRegisterException {
+        productsTable.setItems(FXCollections.observableList(manager.getAll()));
         productsTable.refresh();
     }
 }
