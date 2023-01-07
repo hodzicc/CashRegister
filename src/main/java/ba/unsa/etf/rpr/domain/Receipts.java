@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
-public class Receipts {
+public class Receipts implements Idable{
 
     private int idR;
     private int idP;
@@ -81,5 +81,15 @@ public class Receipts {
                 ", Quantity=" + Quantity +
                 ", LineTotal=" + LineTotal +
                 '}';
+    }
+
+    @Override
+    public void setId(int id) {
+        idR=id;
+    }
+
+    @Override
+    public int getId() {
+        return idR;
     }
 }

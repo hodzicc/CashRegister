@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Date;
 import java.util.Objects;
 
-public class Receipt_Total {
+public class Receipt_Total implements Idable{
 
     int id;
     double total;
