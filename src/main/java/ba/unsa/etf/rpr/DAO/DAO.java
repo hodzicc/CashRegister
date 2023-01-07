@@ -12,5 +12,9 @@ public interface DAO<T> {
 
     List<T> getAll() throws CashRegisterException;
 
+    T update(T item) throws CashRegisterException;
+
+    T getById(int id) throws CashRegisterException;
+
 
 }
