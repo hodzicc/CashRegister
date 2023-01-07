@@ -1,13 +1,17 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
+import ba.unsa.etf.rpr.business.ProductsManager;
 import ba.unsa.etf.rpr.domain.Products;
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class UpdateController {
+
+    private ProductsManager manager = new ProductsManager();
     private Integer id;
 
     public Label idLabel;
@@ -23,10 +27,10 @@ public class UpdateController {
 
     }
 
-    public void initialize(){
+    public void initialize() throws CashRegisterException {
         Products prod = new Products();
-        ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
-        prod = sqlimpl.getById(id);
+
+        prod = manager.getById(id);
         idLabel.setText(String.valueOf(prod.getId()));
         nameLabel.setText(prod.getName());
         priceField.setText(String.valueOf(prod.getPrice()));
@@ -35,9 +39,8 @@ public class UpdateController {
 
 
 
-    public void onSaveClicked(MouseEvent mouseEvent) {
+    public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
 
-        ProductsDAOSQLImpl sqlimpl = new ProductsDAOSQLImpl();
         String name = nameLabel.getText();
         Double price = Double.valueOf(priceField.getText());
         int left = Integer.parseInt(lisField.getText());
@@ -48,7 +51,7 @@ public class UpdateController {
         prod.setPrice(price);
         prod.setLeftInStock(left);
 
-        sqlimpl.update(prod);
+        manager.update(prod);
 
 
         Node n = (Node) mouseEvent.getSource();

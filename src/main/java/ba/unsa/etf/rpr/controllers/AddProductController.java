@@ -15,7 +15,7 @@ import java.util.*;
 
 public class AddProductController {
 
-    ProductsManager manager = new ProductsManager();
+    private ProductsManager manager = new ProductsManager();
     public Button saveBtn;
     public Button cancelBtn;
     public TextField nameField;
