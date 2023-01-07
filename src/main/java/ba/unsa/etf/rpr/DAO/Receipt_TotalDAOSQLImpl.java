@@ -1,29 +1,34 @@
 package ba.unsa.etf.rpr.DAO;
 
 import ba.unsa.etf.rpr.domain.Employees;
+import ba.unsa.etf.rpr.domain.Products;
 import ba.unsa.etf.rpr.domain.Receipt_Total;
 import ba.unsa.etf.rpr.domain.Receipts;
+import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
-public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
+public class Receipt_TotalDAOSQLImpl extends AbstractDAO<Receipt_Total> implements  Receipt_TotalDAO{
 
-    private Connection connection;
+    private static Receipt_TotalDAOSQLImpl instance = null;
 
-    public Receipt_TotalDAOSQLImpl(){
-        try{
-            Properties p = new Properties();
-            p.load(ClassLoader.getSystemResource("application.properties").openStream());
-            String url = p.getProperty("db.connection_string");
-            String username = p.getProperty("db.username");
-            String password = p.getProperty("db.password");
-            this.connection = DriverManager.getConnection(url, username, password);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    private Receipt_TotalDAOSQLImpl(){
+        super("Receipt_total");
+    }
+
+    public static Receipt_TotalDAOSQLImpl getInstance(){
+        if(instance==null)
+            instance = new Receipt_TotalDAOSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
     @Override
     public Receipt_Total add(Receipt_Total item) {
@@ -110,6 +115,16 @@ public class Receipt_TotalDAOSQLImpl implements  Receipt_TotalDAO{
             return null;
         }
 
+    }
+
+    @Override
+    public Receipt_Total row2object(ResultSet rs) throws CashRegisterException {
+        return null;
+    }
+
+    @Override
+    public Map<String, Object> object2row(Receipt_Total object) {
+        return null;
     }
 
     @Override
