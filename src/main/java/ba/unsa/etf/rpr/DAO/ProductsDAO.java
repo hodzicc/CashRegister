@@ -4,7 +4,4 @@ import ba.unsa.etf.rpr.domain.Products;
 
 public interface ProductsDAO extends DAO<Products> {
 
-    Products getById(int id);
-
-    Products update (Products item);
 }
