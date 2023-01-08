@@ -160,16 +160,19 @@ public class MakeReceiptController {
 
         openDialog("Receipt", "/fxml/Receipt.fxml", null);
 
-
+        closeDialog(actionEvent);
     }
 
     public void onExitClicked(ActionEvent actionEvent) {
-        Node n = (Node) actionEvent.getSource();
-        Stage stage = (Stage) n.getScene().getWindow();
-        stage.close();
+       closeDialog(actionEvent);
 
     }
 
+    private void closeDialog(ActionEvent actionEvent){
+        Node n = (Node) actionEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
+    }
     public void refreshTable() throws CashRegisterException {
 
 
