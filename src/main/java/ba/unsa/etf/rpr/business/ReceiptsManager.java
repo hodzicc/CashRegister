@@ -29,8 +29,8 @@ public class ReceiptsManager {
         return DAOFactory.receiptsDAO().add(r);
     }
 
-    public Double getTotal(int idr) throws CashRegisterException{
-         return DAOFactory.receiptsDAO().getTotal(idr);
+    public Double getTotal() throws CashRegisterException{
+         return DAOFactory.receiptsDAO().getTotal();
     }
 
 

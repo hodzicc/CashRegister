@@ -78,14 +78,10 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
         }
     }
 
-    public double executeQueryDouble(String qry, Object[] params) throws CashRegisterException {
+    public double executeQueryDouble(String qry) throws CashRegisterException {
         try {
             PreparedStatement stmt = getConnection().prepareStatement(qry);
-            if (params != null) {
-                for (int i = 1; i <= params.length; i++) {
-                    stmt.setObject(i, params[i - 1]);
-                }
-            }
+
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
 

@@ -152,7 +152,7 @@ public class MakeReceiptController {
     public void onMakeClicked(ActionEvent actionEvent) throws CashRegisterException {
 
         Receipt_Total r = new Receipt_Total();
-        r.setTotal(managerR.getTotal(1));
+        r.setTotal(managerR.getTotal());
         Calendar calendar = Calendar.getInstance();
         java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
         r.setDate(startDate);

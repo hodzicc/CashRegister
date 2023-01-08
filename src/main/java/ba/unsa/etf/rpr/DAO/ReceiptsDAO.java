@@ -5,5 +5,5 @@ import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 public interface ReceiptsDAO extends DAO<Receipts>{
 
-    Double getTotal(int idr) throws CashRegisterException;
+    Double getTotal() throws CashRegisterException;
 }
