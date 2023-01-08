@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.DAO;
 
 import ba.unsa.etf.rpr.domain.Idable;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.*;
@@ -144,10 +145,14 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
 
     public void delete(int id) throws CashRegisterException {
         String sql = "DELETE FROM "+tableName+" WHERE id = ?";
-        try{
+       try{
+
             PreparedStatement stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, id);
             stmt.executeUpdate();
+
+
+
         }catch (SQLException e){
             throw new CashRegisterException(e.getMessage(), e);
         }

@@ -33,7 +33,7 @@ public class EmployeesDAOSQLImpl extends AbstractDAO<Employees> implements Emplo
         try {
             Employees employee = new Employees();
 
-            employee.setId(rs.getInt("idEmployee"));
+            employee.setId(rs.getInt("id"));
             employee.setUsername(rs.getString("username"));
             employee.setPassword(rs.getString("password"));
             employee.setName(rs.getString("Name"));
@@ -48,7 +48,7 @@ public class EmployeesDAOSQLImpl extends AbstractDAO<Employees> implements Emplo
     @Override
     public Map<String, Object> object2row(Employees object) {
         Map<String, Object> row = new TreeMap<>();
-        row.put("idEmployee", object.getId());
+        row.put("id", object.getId());
         row.put("username", object.getUsername());
         row.put("password", object.getPassword());
         row.put("Name", object.getName());

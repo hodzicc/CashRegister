@@ -77,6 +77,7 @@ public class ProductsController {
             Optional<ButtonType> result = confirmation.showAndWait();
             if (!result.get().getButtonData().isCancelButton()){
                 manager.delete(prod.getId());
+
                 refreshTable();
             }
             }
