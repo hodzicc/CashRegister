@@ -32,7 +32,7 @@ public class ProductsDAOSQLImpl extends AbstractDAO<Products> implements Product
         try {
             Products product = new Products();
 
-            product.setId(rs.getInt("ID_product"));
+            product.setId(rs.getInt("id"));
             product.setName(rs.getString("Product_name"));
             product.setPrice(rs.getDouble("Price"));
             product.setLeftInStock(rs.getInt("LeftInStock"));
@@ -49,7 +49,7 @@ public class ProductsDAOSQLImpl extends AbstractDAO<Products> implements Product
     public Map<String, Object> object2row(Products object) {
 
          Map<String, Object> row = new TreeMap<>();
-         row.put("ID_product", object.getId());
+         row.put("id", object.getId());
         row.put("Product_name", object.getName());
         row.put("Price", object.getPrice());
         row.put("LeftInStock", object.getLeftInStock());
