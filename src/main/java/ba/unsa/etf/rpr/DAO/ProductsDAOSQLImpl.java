@@ -48,7 +48,7 @@ public class ProductsDAOSQLImpl extends AbstractDAO<Products> implements Product
     @Override
     public Map<String, Object> object2row(Products object) {
 
-         Map<String, Object> row = new TreeMap<>();
+         Map<String, Object> row = new LinkedHashMap<>();
          row.put("id", object.getId());
         row.put("Product_name", object.getName());
         row.put("Price", object.getPrice());
