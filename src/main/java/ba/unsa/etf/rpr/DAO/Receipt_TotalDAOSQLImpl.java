@@ -47,7 +47,7 @@ public class Receipt_TotalDAOSQLImpl extends AbstractDAO<Receipt_Total> implemen
     @Override
     public Map<String, Object> object2row(Receipt_Total object) {
 
-        Map<String, Object> row = new TreeMap<>();
+        Map<String, Object> row = new LinkedHashMap<>();
         row.put("id", object.getId());
         row.put("Total", object.getTotal());
         row.put("Date", object.getDate());

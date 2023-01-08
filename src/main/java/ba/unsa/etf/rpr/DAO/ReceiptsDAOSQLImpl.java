@@ -45,7 +45,7 @@ public class ReceiptsDAOSQLImpl  extends AbstractDAO<Receipts> implements Receip
 
     @Override
     public Map<String, Object> object2row(Receipts object) {
-        Map<String, Object> row = new TreeMap<>();
+        Map<String, Object> row = new LinkedHashMap<>();
         row.put("id", object.getIdR());
         row.put("idProduct", object.getIdP());
         row.put("Name", object.getName());
