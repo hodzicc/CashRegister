@@ -61,7 +61,10 @@ public class MakeReceiptController {
 
     public void initialize() throws CashRegisterException {
 
-        managerR.delete(1);
+        List<Receipts> rec = managerR.getAll();
+        for(Receipts r: rec){
+            managerR.delete(r.getId());
+        }
 
         nameCol.setCellValueFactory(new PropertyValueFactory<Receipts, String>("name"));
         unitPriceCol.setCellValueFactory(new PropertyValueFactory<Receipts,Double>("unitPrice"));
@@ -75,17 +78,16 @@ public class MakeReceiptController {
         idField.textProperty().addListener((obs, oldValue, newValue)->{
 
              Products prod = new Products();
+             okk=1;
 
             try {
                 prod= managerP.getById(Integer.parseInt(newValue));
             } catch (CashRegisterException e) {
-                throw new RuntimeException(e);
-            }
-            if(prod==null){
                 checkIdLabel.setText("There is no product with that id");
                 okk=0;
             }
-            else  {
+
+            if(okk==1){
                 checkIdLabel.setText("");
                 okk=1;
             }
