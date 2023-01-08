@@ -34,7 +34,7 @@ public class Receipt_TotalDAOSQLImpl extends AbstractDAO<Receipt_Total> implemen
         try {
             Receipt_Total receipt = new Receipt_Total();
 
-            receipt.setId(rs.getInt("ID_receipt"));
+            receipt.setId(rs.getInt("id"));
             receipt.setTotal(rs.getDouble("Total"));
             receipt.setDate(rs.getDate("Date"));
             return receipt;
@@ -48,7 +48,7 @@ public class Receipt_TotalDAOSQLImpl extends AbstractDAO<Receipt_Total> implemen
     public Map<String, Object> object2row(Receipt_Total object) {
 
         Map<String, Object> row = new TreeMap<>();
-        row.put("ID_receipt", object.getId());
+        row.put("id", object.getId());
         row.put("Total", object.getTotal());
         row.put("Date", object.getDate());
 
