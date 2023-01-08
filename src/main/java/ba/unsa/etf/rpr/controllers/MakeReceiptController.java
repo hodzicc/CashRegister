@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.DAO.ProductsDAOSQLImpl;
 import ba.unsa.etf.rpr.DAO.Receipt_TotalDAOSQLImpl;
 import ba.unsa.etf.rpr.DAO.ReceiptsDAOSQLImpl;
 import ba.unsa.etf.rpr.business.ProductsManager;
+import ba.unsa.etf.rpr.business.Receipt_TotalManager;
 import ba.unsa.etf.rpr.business.ReceiptsManager;
 import ba.unsa.etf.rpr.domain.Products;
 import ba.unsa.etf.rpr.domain.Receipt_Total;
@@ -11,21 +12,32 @@ import ba.unsa.etf.rpr.domain.Receipts;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+
 public class MakeReceiptController {
 
+    public GridPane grid;
     private ReceiptsManager managerR = new ReceiptsManager();
     private ProductsManager managerP = new ProductsManager();
+
+    private Receipt_TotalManager managerT = new Receipt_TotalManager();
 
     public TableColumn quantityCol;
     public TableColumn unitPriceCol;
@@ -135,9 +147,17 @@ public class MakeReceiptController {
 
     }
 
-    public void onMakeClicked(ActionEvent actionEvent) {
+    public void onMakeClicked(ActionEvent actionEvent) throws CashRegisterException {
 
-        
+        Receipt_Total r = new Receipt_Total();
+        r.setTotal(managerR.getTotal(1));
+        Calendar calendar = Calendar.getInstance();
+        java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+        r.setDate(startDate);
+        managerT.add(r);
+
+        openDialog("Receipt", "/fxml/Receipt.fxml", null);
+
 
     }
 
@@ -155,5 +175,31 @@ public class MakeReceiptController {
         productsTable.refresh();
 
 
+    }
+
+    private void openDialog(String title, String file, Object controller){
+        try {
+            ((Stage)grid.getScene().getWindow()).hide();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+            loader.setController(controller);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setTitle(title);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+            stage.setResizable(false);
+            stage.setOnHiding(event -> {
+                ((Stage)grid.getScene().getWindow()).show();
+                try {
+                    refreshTable();
+                } catch (CashRegisterException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 }
