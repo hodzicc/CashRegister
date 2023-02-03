@@ -11,8 +11,11 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserRegistrationController {
+
+    private boolean ok=true;
 
     private EmployeesManager manager = new EmployeesManager();
 
@@ -40,9 +43,13 @@ public class UserRegistrationController {
 
                 if (e.getName().equals(newValue)) {
                     FullNameCheck.setText("That user is already registered");
+                    ok = false;
                    break;
                 }
-               else    FullNameCheck.setText("");
+               else {
+                    FullNameCheck.setText("");
+                    ok=true;
+                }
             }
         });
         UsernameField.textProperty().addListener((obs, oldValue, newValue)->{
@@ -51,18 +58,26 @@ public class UserRegistrationController {
 
                 if (e.getUsername().equals(newValue)) {
                     UsernameCheck.setText("That username already exists");
+                    ok=false;
                     break;
                 }
-                else    UsernameCheck.setText("");
+                else {
+                    UsernameCheck.setText("");
+                    ok=true;
+                }
             }
         });
         PasswordField.textProperty().addListener((obs, oldValue, newValue)->{
 
                 if (newValue.length()<=4) {
                     PasswordCheck.setText("Password too short");
+                    ok=false;
 
                 }
-                else    PasswordCheck.setText("");
+                else {
+                    PasswordCheck.setText("");
+                    ok=true;
+                }
 
         });
 
@@ -84,23 +99,28 @@ public class UserRegistrationController {
     }
 
     public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
-
         String username = UsernameField.getText();
         String password = PasswordField.getText();
         String name = NameField.getText();
         boolean isAdmin = checkBoxAdmin.isSelected();
+        if(!ok || Objects.equals(name, "") || Objects.equals(password, "") || Objects.equals(username, ""))
+        {
+            new Alert(Alert.AlertType.ERROR,"Invalid registration, please enter required information again", ButtonType.OK).show();
+        }
+        else {
 
-        Employees empl = new Employees();
-        empl.setName(name);
-        empl.setUsername(username);
-        empl.setPassword(password);
-        empl.setAdmin(isAdmin);
+            Employees empl = new Employees();
+            empl.setName(name);
+            empl.setUsername(username);
+            empl.setPassword(password);
+            empl.setAdmin(isAdmin);
 
-        manager.add(empl);
+            manager.add(empl);
 
-        new Alert(Alert.AlertType.NONE,"New employee added successfully", ButtonType.OK).show();
+            new Alert(Alert.AlertType.NONE, "New employee added successfully", ButtonType.OK).show();
 
-        closeDialog(mouseEvent);
+            closeDialog(mouseEvent);
+        }
 
     }
 }
