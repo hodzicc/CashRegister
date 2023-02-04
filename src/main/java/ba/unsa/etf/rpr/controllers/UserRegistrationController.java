@@ -38,7 +38,7 @@ public class UserRegistrationController {
 
         List<Employees> finalEmpl = empl;
         NameField.textProperty().addListener((obs, oldValue, newValue)->{
-            if(!newValue.matches("[a-zA-Z]+")) {
+            if(newValue.matches("^[a-zA-Z]")) {
                 ok = false;
                 FullNameCheck.setText("Please only use letters a-z, A-Z");
             }
@@ -57,7 +57,7 @@ public class UserRegistrationController {
             }
         });
         UsernameField.textProperty().addListener((obs, oldValue, newValue)->{
-            if(!newValue.matches("[a-zA-Z]+")) {
+            if(newValue.matches("^[a-zA-Z]")) {
                 ok = false;
                 UsernameCheck.setText("Please only use letters a-z, A-Z");
             }

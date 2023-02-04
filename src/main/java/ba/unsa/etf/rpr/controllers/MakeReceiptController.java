@@ -47,7 +47,7 @@ public class MakeReceiptController {
     public TableColumn quantityCol;
     public TableColumn unitPriceCol;
     private int id;
-    private int okk;
+    private int okk=0;
     public Button exitBtn;
     public Button makeBtn;
     public Button addBtn;
@@ -82,42 +82,54 @@ public class MakeReceiptController {
         id=1;
 
         idField.textProperty().addListener((obs, oldValue, newValue)->{
+            if(!newValue.trim().isEmpty()) {
+                Products prod = new Products();
+                okk = 1;
 
-             Products prod = new Products();
-             okk=1;
+                int id;
+                try {
+                    id = Integer.parseInt(newValue);
+                } catch (Exception e) {
+                    checkIdLabel.setText("Incorrect number format");
+                    okk = 0;
+                }
+                if (okk == 1)
+                    try {
+                        prod = managerP.getById(Integer.parseInt(newValue));
+                    } catch (CashRegisterException e) {
+                        checkIdLabel.setText("There is no product with that id");
+                        okk = 0;
+                    }
 
-            try {
-                prod= managerP.getById(Integer.parseInt(newValue));
-            } catch (CashRegisterException e) {
-                checkIdLabel.setText("There is no product with that id");
-                okk=0;
+                if (okk == 1) {
+                    checkIdLabel.setText("");
+                    if (checkQuantityLabel.getText() == "Id not found")
+                        checkQuantityLabel.setText("");
+                    okk = 1;
+                }
             }
-
-            if(okk==1){
-                checkIdLabel.setText("");
-                okk=1;
-            }
-
         });
 
         quantityField.textProperty().addListener((obs, oldValue, newValue)->{
+            if(!newValue.trim().isEmpty()) {
+                okk = 1;
 
-           Products prod = new Products();
-            try {
-                prod= managerP.getById(Integer.parseInt(idField.getText()));
-            } catch (CashRegisterException e) {
-                throw new RuntimeException(e);
+                Products prod = new Products();
+                try {
+                    prod = managerP.getById(Integer.parseInt(idField.getText()));
+                } catch (Exception e) {
+                    okk = 0;
+                    checkQuantityLabel.setText("Id not found");
+                }
+                if (okk == 1)
+                    if (prod.getLeftInStock() < Integer.parseInt(newValue)) {
+                        okk = 0;
+                        checkQuantityLabel.setText("There is not enough items left");
+                    } else {
+                        okk = 1;
+                        checkQuantityLabel.setText("");
+                    }
             }
-            if(prod.getLeftInStock()<Integer.parseInt(newValue)) {
-                 okk=0;
-                 checkQuantityLabel.setText("There is not enough items left");
-             }
-             else
-             {
-                 okk=1;
-                 checkQuantityLabel.setText("");
-             }
-
         });
 
     }
@@ -130,30 +142,46 @@ public class MakeReceiptController {
     public void onAddClicked(ActionEvent actionEvent) throws CashRegisterException {
 
         if (okk == 1) {
+            try {
 
-            Receipts item = new Receipts();
-            item.setIdR(id);
-            int idp = Integer.parseInt(idField.getText());
-            item.setIdP(idp);
-            int quan = Integer.parseInt(quantityField.getText());
-            item.setQuantity(quan);
+                if (quantityField.getText().trim().isEmpty() || idField.getText().trim().isEmpty())
+                    throw new CashRegisterException("Please enter required data");
+                Receipts item = new Receipts();
+                item.setIdR(id);
+                int idp, quan;
+                try {
+                    idp = Integer.parseInt(idField.getText());
+                    quan = Integer.parseInt(quantityField.getText());
+                } catch (Exception e) {
+                    throw new CashRegisterException("Incorrect data format");
+                }
+                item.setQuantity(quan);
+                item.setIdP(idp);
+                Products prod = new Products();
+                prod = managerP.getById(idp);
 
-            Products prod = new Products();
-            prod = managerP.getById(idp);
-            item.setLineTotal(prod.getPrice() * quan);
+                double d = prod.getPrice() * quan;
+                d= Math.round(d*100);
+                d=d/100;
+                item.setLineTotal(d);
+                item.setUnitPrice(prod.getPrice());
+                item.setName(prod.getName());
 
-            item.setUnitPrice(prod.getPrice());
-            item.setName(prod.getName());
 
+                managerR.add(item);
+                refreshTable();
+                idField.setText("");
+                quantityField.setText("");
 
-            managerR.add(item);
-            refreshTable();
-            idField.setText("");
-            quantityField.setText("");
-
-            int left = prod.getLeftInStock();
-            prod.setLeftInStock(left-quan);
-            managerP.update(prod);
+                int left = prod.getLeftInStock();
+                prod.setLeftInStock(left - quan);
+                managerP.update(prod);
+                checkQuantityLabel.setText("");
+                checkIdLabel.setText("");
+            }
+            catch(CashRegisterException e){
+                new Alert(Alert.AlertType.ERROR, e.getMessage(),ButtonType.OK).show();
+            }
         }
         else
             new Alert(Alert.AlertType.ERROR,"You have to input id and quantity", ButtonType.OK).show();
@@ -166,17 +194,27 @@ public class MakeReceiptController {
      * @throws CashRegisterException
      */
     public void onMakeClicked(ActionEvent actionEvent) throws CashRegisterException {
+        try {
+         if(managerR.getAll()!=null) {
+             Receipt_Total r = new Receipt_Total();
+             r.setTotal(managerR.getTotal());
+             Calendar calendar = Calendar.getInstance();
+             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+             r.setDate(startDate);
+             managerT.add(r);
+             openDialog("Receipt", "/fxml/Receipt.fxml", null);
+             List<Receipts> rec = managerR.getAll();
+             for(Receipts r1: rec){
+                 managerR.delete(r1.getId());
+             }
+             refreshTable();
 
-        Receipt_Total r = new Receipt_Total();
-        r.setTotal(managerR.getTotal());
-        Calendar calendar = Calendar.getInstance();
-        java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-        r.setDate(startDate);
-        managerT.add(r);
+         }
+        }
+        catch(CashRegisterException e){
+            new Alert(Alert.AlertType.ERROR, e.getMessage(),ButtonType.OK).show();
+        }
 
-        openDialog("Receipt", "/fxml/Receipt.fxml", null);
-
-        closeDialog(actionEvent);
     }
 
     /**

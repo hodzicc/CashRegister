@@ -44,9 +44,9 @@ public class AddProductController {
         List<Products> finalProd = prod;
         
         nameField.textProperty().addListener((obs, oldValue, newValue)-> {
-            if(!newValue.matches("[a-zA-Z]+")) {
+            if(newValue.matches("^[a-zA-Z]")) {
                 ok = false;
-                nameCheck.setText("Please only use letters a-z, A-Z");
+                nameCheck.setText("Please only use letters a-z, A-Z, between 3 and 45 characters");
             } else {
                 for (Products p : finalProd) {
 
@@ -88,34 +88,37 @@ public class AddProductController {
      * @throws CashRegisterException
      */
     public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
-        if(!ok || nameField.getText().trim().isEmpty() ||
-        priceField.getText().trim().isEmpty()
-        || leftField.getText().trim().isEmpty())
-        {
-            new Alert(Alert.AlertType.ERROR,"Please enter valid data", ButtonType.OK).show();
-        }
-        else {
-            String name = nameField.getText();
-            Double price;
-            int left;
+        if (!ok || nameField.getText().trim().isEmpty() ||
+                priceField.getText().trim().isEmpty()
+                || leftField.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter valid data", ButtonType.OK).show();
+        } else {
             try {
-                price = Double.valueOf(priceField.getText());
-                left = Integer.parseInt(leftField.getText());
+                String name = nameField.getText();
+                Double price;
+                int left;
+               try {
+                   price = Double.valueOf(priceField.getText());
+                   left = Integer.parseInt(leftField.getText());
+               }
+               catch(Exception e)
+               {
+                   throw new CashRegisterException("Incorrect number format");
+               }
+                    Products prod = new Products();
+                    prod.setName(name);
+                    prod.setPrice(price);
+                    prod.setLeftInStock(left);
 
-            Products prod = new Products();
-            prod.setName(name);
-            prod.setPrice(price);
-            prod.setLeftInStock(left);
+                    manager.add(prod);
 
-            manager.add(prod);
+                    new Alert(Alert.AlertType.NONE, "New product added successfully", ButtonType.OK).show();
 
-            new Alert(Alert.AlertType.NONE, "New product added successfully", ButtonType.OK).show();
+                    closeDialog(mouseEvent);
 
-            closeDialog(mouseEvent);
-        }
-            catch(Exception e){
-            new Alert(Alert.AlertType.ERROR,"Please enter valid data", ButtonType.OK).show();
-        }
+            } catch (CashRegisterException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK).show();
+            }
         }
     }
 }

@@ -47,9 +47,16 @@ public class UpdateController {
         else {
             try {
                 String name = nameLabel.getText();
-                Double price = Double.valueOf(priceField.getText());
-                int left = Integer.parseInt(lisField.getText());
-
+                Double price;
+                int left;
+                try {
+                    price = Double.valueOf(priceField.getText());
+                    left = Integer.parseInt(lisField.getText());
+                }
+                catch(Exception e)
+                {
+                    throw new CashRegisterException("Incorrect number format");
+                }
                 Products prod = new Products();
                 prod.setId(id);
                 prod.setName(name);
@@ -60,8 +67,8 @@ public class UpdateController {
                 closeDialog(mouseEvent);
                 new Alert(Alert.AlertType.NONE, "Product updated successfully", ButtonType.OK).show();
             }
-            catch(Exception e){
-                new Alert(Alert.AlertType.ERROR,"Please enter valid data", ButtonType.OK).show();
+            catch(CashRegisterException e){
+                new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.OK).show();
             }
 
         }

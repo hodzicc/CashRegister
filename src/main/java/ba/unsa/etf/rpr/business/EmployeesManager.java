@@ -15,13 +15,13 @@ import java.util.List;
 public class EmployeesManager {
 
     public void validateUsername(String name) throws CashRegisterException{
-        if (name == null || name.length() > 45 || name.length() < 3 || !name.matches("[A-Za-z]+")){
+        if (name == null || name.length() > 45 || name.length() < 3 || name.matches("^[A-Za-z]")){
             throw new CashRegisterException("Username must be between 3 and 45 chars, can't contain numbers");
         }
     }
 
     public void validateFullName(String name) throws CashRegisterException{
-        if (name == null || !name.contains(" ") || name.length() > 45 || name.length() < 3 || !name.matches("[A-Za-z]+")){
+        if (name == null || !name.contains(" ") || name.length() > 45 || name.length() < 3 || name.matches("^[A-Za-z]")){
             throw new CashRegisterException("Name must be between 3 and 45 chars, can't contain numbers");
         }
 
