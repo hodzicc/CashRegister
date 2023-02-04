@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -13,8 +14,8 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class AdminMenuController {
 
-    private void closeDialog(ActionEvent mouseEvent){
-        Node n = (Node) mouseEvent.getSource();
+    private void closeDialog(ActionEvent actionEvent){
+        Node n = (Node)actionEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
@@ -32,9 +33,9 @@ public class AdminMenuController {
 
     }
 
-    public void onUserRegistrationClicked(ActionEvent mouseEvent) {
+    public void onUserRegistrationClicked(ActionEvent actionEvent) {
         openDialog("User Registration", "/fxml/UserRegistration.fxml",null);
-        closeDialog(mouseEvent);
+        closeDialog(actionEvent);
 
     }
 

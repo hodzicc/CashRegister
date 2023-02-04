@@ -19,7 +19,6 @@ public class LoginController {
     public PasswordField PasswordLine;
     public TextField UsrnmLine;
     public Button LoginBtn;
-    public Label PswrdCheck;
 
     public void loginClick(ActionEvent actionEvent) throws CashRegisterException {
         String username = new String(UsrnmLine.getText());
@@ -63,14 +62,4 @@ public class LoginController {
         }
     }
 
-    public void initialize(){
-
-        PasswordLine.textProperty().addListener((obs, oldValue, newValue)->{
-
-            if(newValue.length()>=4)
-                PswrdCheck.setText("");
-            else PswrdCheck.setText("Password not valid");
-
-        });
-    }
 }
