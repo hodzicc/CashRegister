@@ -107,27 +107,31 @@ public class UserRegistrationController {
     }
 
     public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
-        String username = UsernameField.getText();
-        String password = PasswordField.getText();
-        String name = NameField.getText();
-        boolean isAdmin = checkBoxAdmin.isSelected();
-        if(!ok || username.trim().isEmpty() || password.trim().isEmpty() || name.trim().isEmpty())
-        {
-            new Alert(Alert.AlertType.ERROR,"Invalid registration, please enter required information again", ButtonType.OK).show();
+        try {
+            String username = UsernameField.getText();
+            String password = PasswordField.getText();
+            String name = NameField.getText();
+            boolean isAdmin = checkBoxAdmin.isSelected();
+            if (username.trim().isEmpty() || password.trim().isEmpty() || name.trim().isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Invalid registration, please enter required information again", ButtonType.OK).show();
+            } else {
+
+
+                Employees empl = new Employees();
+                empl.setName(name);
+                empl.setUsername(username);
+                empl.setPassword(password);
+                empl.setAdmin(isAdmin);
+
+                manager.add(empl);
+
+                new Alert(Alert.AlertType.NONE, "New employee added successfully", ButtonType.OK).show();
+
+                closeDialog(mouseEvent);
+            }
         }
-        else {
-
-            Employees empl = new Employees();
-            empl.setName(name);
-            empl.setUsername(username);
-            empl.setPassword(password);
-            empl.setAdmin(isAdmin);
-
-            manager.add(empl);
-
-            new Alert(Alert.AlertType.NONE, "New employee added successfully", ButtonType.OK).show();
-
-            closeDialog(mouseEvent);
+        catch(CashRegisterException e){
+            new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK).show();
         }
 
     }
