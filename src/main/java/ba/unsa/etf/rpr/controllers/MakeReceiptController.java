@@ -31,19 +31,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX controller class for making receipts
+ * @author Amna Hodzic
+ */
 public class MakeReceiptController {
 
-    public GridPane grid;
+   //managers
     private ReceiptsManager managerR = new ReceiptsManager();
     private ProductsManager managerP = new ProductsManager();
-
     private Receipt_TotalManager managerT = new Receipt_TotalManager();
 
+    //form components
+    public GridPane grid;
     public TableColumn quantityCol;
     public TableColumn unitPriceCol;
     private int id;
-
-    private int employee;
     private int okk;
     public Button exitBtn;
     public Button makeBtn;
@@ -58,7 +61,10 @@ public class MakeReceiptController {
     public TableColumn nameCol;
     public TableView productsTable;
 
-
+    /**
+     * initialize method with listeners for data validation
+     * @throws CashRegisterException
+     */
     public void initialize() throws CashRegisterException {
 
         List<Receipts> rec = managerR.getAll();
@@ -116,6 +122,11 @@ public class MakeReceiptController {
 
     }
 
+    /**
+     * add button event handler
+     * @param actionEvent
+     * @throws CashRegisterException
+     */
     public void onAddClicked(ActionEvent actionEvent) throws CashRegisterException {
 
         if (okk == 1) {
@@ -149,6 +160,11 @@ public class MakeReceiptController {
 
     }
 
+    /***
+     * Make button event handler
+     * @param actionEvent
+     * @throws CashRegisterException
+     */
     public void onMakeClicked(ActionEvent actionEvent) throws CashRegisterException {
 
         Receipt_Total r = new Receipt_Total();
@@ -163,16 +179,29 @@ public class MakeReceiptController {
         closeDialog(actionEvent);
     }
 
+    /**
+     * exit button event handler
+     * @param actionEvent
+     */
     public void onExitClicked(ActionEvent actionEvent) {
        closeDialog(actionEvent);
 
     }
 
+    /**
+     * method for closing the dialog
+     * @param actionEvent
+     */
     private void closeDialog(ActionEvent actionEvent){
         Node n = (Node) actionEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
+
+    /**
+     * method for refresing the tableview with data from db
+     * @throws CashRegisterException
+     */
     public void refreshTable() throws CashRegisterException {
 
 
@@ -182,6 +211,12 @@ public class MakeReceiptController {
 
     }
 
+    /**
+     * method for opening new dialog
+     * @param title
+     * @param file
+     * @param controller
+     */
     private void openDialog(String title, String file, Object controller){
         try {
             ((Stage)grid.getScene().getWindow()).hide();

@@ -5,6 +5,11 @@ import ba.unsa.etf.rpr.domain.Receipts;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.util.List;
+/**
+ * Business logic layer for Receipt
+ *
+ * @author Amna Hodzic
+ */
 
 public class ReceiptsManager {
 

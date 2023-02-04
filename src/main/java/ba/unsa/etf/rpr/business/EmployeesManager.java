@@ -6,6 +6,12 @@ import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.util.List;
 
+/**
+ * Business logic layer for Employees
+ *
+ * @author Amna Hodzic
+ */
+
 public class EmployeesManager {
 
 

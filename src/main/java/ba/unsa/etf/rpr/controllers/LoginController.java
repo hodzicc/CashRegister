@@ -13,12 +13,25 @@ import javafx.stage.StageStyle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX controller for login
+ * @author Amna Hodzic
+ */
 public class LoginController {
 
+    //manager
     private EmployeesManager manager = new EmployeesManager();
+
+    //form components
     public PasswordField PasswordLine;
     public TextField UsrnmLine;
     public Button LoginBtn;
+
+    /**
+     * Login button event handler
+     * @param actionEvent
+     * @throws CashRegisterException
+     */
 
     public void loginClick(ActionEvent actionEvent) throws CashRegisterException {
         String username = new String(UsrnmLine.getText());
@@ -28,7 +41,7 @@ public class LoginController {
 
         if(empl==null)
         {
-            new Alert(Alert.AlertType.ERROR, "Pogrešan username", ButtonType.OK).show();
+            new Alert(Alert.AlertType.ERROR, "Invalid username", ButtonType.OK).show();
 
         }
 
@@ -41,12 +54,19 @@ public class LoginController {
             openDialog("Receipts", "/fxml/MakeReceipt.fxml",null);
         }
         else{
-            new Alert(Alert.AlertType.ERROR, "Pogrešan password", ButtonType.OK).show();
+            new Alert(Alert.AlertType.ERROR, "Invalid password", ButtonType.OK).show();
 
         }
 
 
     }
+
+    /**
+     * private method for opening a new dialog
+     * @param title
+     * @param file
+     * @param controller
+     */
     private void openDialog(String title, String file, Object controller){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));

@@ -13,10 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
 
+/**
+ * JavaFX controller for adding new products
+ *
+ * @author Amna Hodzic
+ */
+
 public class AddProductController {
 
+    //variable for data validation
     private boolean ok=true;
+
+    //manager
     private ProductsManager manager = new ProductsManager();
+
+    //form components
     public Button saveBtn;
     public Button cancelBtn;
     public TextField nameField;
@@ -24,6 +35,7 @@ public class AddProductController {
     public TextField leftField;
     public Label nameCheck;
 
+    //initialize method with listeners
     public void initialize() throws CashRegisterException {
         
 
@@ -52,16 +64,29 @@ public class AddProductController {
         
     }
 
+    /**
+     * method for Dialog closing
+     * @param mouseEvent
+     */
     private void closeDialog(MouseEvent mouseEvent){
         Node n = (Node) mouseEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * cancel button event handler
+     * @param mouseEvent
+     */
     public void onCancelClicked(MouseEvent mouseEvent) {
         closeDialog(mouseEvent);
     }
 
+    /**
+     * save button event handler
+     * @param mouseEvent
+     * @throws CashRegisterException
+     */
     public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
         if(!ok || nameField.getText().trim().isEmpty() ||
         priceField.getText().trim().isEmpty()
