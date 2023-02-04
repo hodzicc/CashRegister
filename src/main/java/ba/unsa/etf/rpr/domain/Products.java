@@ -2,6 +2,10 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+/**
+ * list of all products in db
+ * @author Amna Hodzic
+ */
 public class Products implements Idable{
     private int id;
     private String name;

@@ -6,6 +6,11 @@ import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * MySQL implementation of dao
+ * singleton pattern used
+ * @author Amna Hodzic
+ */
 public class ReceiptsDAOSQLImpl  extends AbstractDAO<Receipts> implements ReceiptsDAO {
     private static ReceiptsDAOSQLImpl instance = null;
 

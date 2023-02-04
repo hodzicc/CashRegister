@@ -2,6 +2,10 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+/**
+ * list of all products and their quantity on a single receipt
+ * @author Amna Hodzic
+ */
 public class Receipts implements Idable{
 
     private int idR;

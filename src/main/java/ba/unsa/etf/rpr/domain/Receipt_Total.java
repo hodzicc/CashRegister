@@ -3,6 +3,10 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * list of total values of every receipt
+ * @author Amna Hodzic
+ */
 public class Receipt_Total implements Idable{
 
     int id;

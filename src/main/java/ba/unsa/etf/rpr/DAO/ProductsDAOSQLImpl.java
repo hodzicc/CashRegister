@@ -8,6 +8,11 @@ import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * MySQL implementation of dao
+ * singleton pattern used
+ * @author Amna Hodzic
+ */
 public class ProductsDAOSQLImpl extends AbstractDAO<Products> implements ProductsDAO {
     private static ProductsDAOSQLImpl instance = null;
 

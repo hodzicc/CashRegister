@@ -1,5 +1,9 @@
 package ba.unsa.etf.rpr.DAO;
 
+/**
+ * factory class for singleton implementation of daos
+ * @author Amna Hodzic
+ */
 public class DAOFactory {
 
     private static final EmployeesDAO employeesDAO = EmployeesDAOSQLImpl.getInstance();

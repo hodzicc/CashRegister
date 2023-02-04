@@ -2,6 +2,10 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+/**
+ * list of all employees that can log in the app
+ * @author Amna Hodzic
+ */
 public class Employees implements Idable{
 
     private int id;

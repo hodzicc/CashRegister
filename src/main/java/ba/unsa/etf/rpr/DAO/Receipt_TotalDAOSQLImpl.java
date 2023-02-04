@@ -10,6 +10,11 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
+/**
+ * MySQL implementation of dao
+ * singleton pattern used
+ * @author Amna Hodzic
+ */
 public class Receipt_TotalDAOSQLImpl extends AbstractDAO<Receipt_Total> implements  Receipt_TotalDAO{
 
     private static Receipt_TotalDAOSQLImpl instance = null;
