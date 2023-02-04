@@ -29,6 +29,7 @@ public class LoginController {
 
     /**
      * Login button event handler
+     * checks if entered username and password are valid and opens new dialogs
      * @param actionEvent
      * @throws CashRegisterException
      */
@@ -47,11 +48,15 @@ public class LoginController {
 
         if(empl.isAdmin() && empl.getPassword().equals(password)){
             openDialog("AdminMenu", "/fxml/AdminMenu.fxml",null);
+            UsrnmLine.setText("");
+            PasswordLine.setText("");
 
         }
         else if(!empl.isAdmin() && empl.getPassword().equals(password))
         {
             openDialog("Receipts", "/fxml/MakeReceipt.fxml",null);
+            UsrnmLine.setText("");
+            PasswordLine.setText("");
         }
         else{
             new Alert(Alert.AlertType.ERROR, "Invalid password", ButtonType.OK).show();

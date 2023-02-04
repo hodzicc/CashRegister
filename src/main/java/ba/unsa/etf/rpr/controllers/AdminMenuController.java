@@ -36,7 +36,7 @@ public class AdminMenuController {
     public void onProductsClicked(ActionEvent actionEvent) {
 
         openDialog("Products", "/fxml/Products.fxml",null);
-        closeDialog(actionEvent);
+       // closeDialog(actionEvent);
 
     }
 
@@ -47,7 +47,7 @@ public class AdminMenuController {
     public void onReceiptsClicked(ActionEvent actionEvent) {
 
         openDialog("Receipts", "/fxml/MakeReceipt.fxml",null);
-        closeDialog(actionEvent);
+       // closeDialog(actionEvent);
 
     }
 
@@ -57,7 +57,7 @@ public class AdminMenuController {
      */
     public void onUserRegistrationClicked(ActionEvent actionEvent) {
         openDialog("User Registration", "/fxml/UserRegistration.fxml",null);
-        closeDialog(actionEvent);
+       // closeDialog(actionEvent);
 
     }
 

@@ -6,6 +6,12 @@ import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.*;
+
+/**
+ * Abstract class that implements core DAO CRUD methods for every entity
+ *
+ * @author Amna Hodzic
+ */
 public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
     private static Connection connection = null;
     private String tableName;

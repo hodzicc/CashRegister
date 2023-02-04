@@ -17,10 +17,17 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
+
+/***
+ * JavaFX controller class for Receipt
+ * @author Amna Hodzic
+ */
 public class ReceiptController {
 
+    //managers
     private ReceiptsManager managerR = new ReceiptsManager();
     private Receipt_TotalManager managerT = new Receipt_TotalManager();
+    //form components
     public Button closeBtn;
     public Label dateLabel;
     public Label totalLabel;
@@ -29,6 +36,11 @@ public class ReceiptController {
     public TableColumn priceCol;
     public TableColumn quantityCol;
     public TableColumn totalCol;
+
+    /**
+     * initialize method that puts data from receipts table to tableview
+     * @throws CashRegisterException
+     */
 
     public void initialize() throws CashRegisterException {
 
@@ -54,6 +66,11 @@ public class ReceiptController {
 
     }
 
+    /**
+     * method for closing the dialog
+     * close button event handler
+     * @param mouseEvent
+     */
     public void onCloseClicked(MouseEvent mouseEvent) {
         Node n = (Node) mouseEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();

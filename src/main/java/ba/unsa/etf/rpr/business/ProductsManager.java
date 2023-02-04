@@ -12,6 +12,11 @@ import java.util.List;
  */
 
 public class ProductsManager {
+    /**
+     * method for name validation
+     * @param name
+     * @throws CashRegisterException
+     */
 
     public void validateName(String name) throws CashRegisterException{
         if (name == null || name.length() > 45 || name.length() < 3 || name.matches("^[A-Za-z]")){
@@ -21,23 +26,51 @@ public class ProductsManager {
     }
 
 
+    /**
+     * method that returns list of all products from db
+     * @return
+     * @throws CashRegisterException
+     */
     public List<Products> getAll() throws CashRegisterException {
         return DAOFactory.productsDAO().getAll();
     }
 
+    /**
+     * method that deletes product with given id from db
+     * @param id
+     * @throws CashRegisterException
+     */
     public void delete(int id) throws CashRegisterException{
         DAOFactory.productsDAO().delete(id);
     }
+
+    /**
+     * method that returns product from db
+     * @param id
+     * @return
+     * @throws CashRegisterException
+     */
 
     public Products getById(int id) throws CashRegisterException{
         return DAOFactory.productsDAO().getById(id);
     }
 
+    /**
+     * method that updates Product received as a parametar in db
+     * @param p
+     * @throws CashRegisterException
+     */
     public void update(Products p) throws CashRegisterException{
         validateName(p.getName());
         DAOFactory.productsDAO().update(p);
     }
 
+    /**
+     * method that adds new Product to the db
+     * @param p
+     * @return
+     * @throws CashRegisterException
+     */
     public Products add(Products p) throws CashRegisterException{
         validateName(p.getName());
         return DAOFactory.productsDAO().add(p);

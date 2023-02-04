@@ -13,6 +13,12 @@ import java.util.List;
 
 public class Receipt_TotalManager {
 
+    /**
+     * methods for writing and reading db records
+     * table Receipt_total
+     * @return
+     * @throws CashRegisterException
+     */
 
     public List<Receipt_Total> getAll() throws CashRegisterException {
         return DAOFactory.receipt_totalDAO().getAll();

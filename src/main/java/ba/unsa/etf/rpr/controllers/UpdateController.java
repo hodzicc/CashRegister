@@ -9,11 +9,17 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/***
+ * JavaFX controller class for update
+ * @author Amna Hodzic
+ */
 public class UpdateController {
 
+    //manager
     private ProductsManager manager = new ProductsManager();
     private Integer id;
 
+    //form components
     public Label idLabel;
     public Label nameLabel;
     public TextField priceField;
@@ -21,12 +27,18 @@ public class UpdateController {
     public Button saveBtn;
     public Button cancelBtn;
 
+    //constructor method for initializing id attribute
      UpdateController(Integer id){
 
         this.id=id;
 
     }
 
+
+    /**
+     * initialize method for putting data from db to required fields
+     * @throws CashRegisterException
+     */
     public void initialize() throws CashRegisterException {
         Products prod = new Products();
 
@@ -38,7 +50,12 @@ public class UpdateController {
     }
 
 
-
+    /**
+     * save button event handler
+     * saves changes made to the product
+     * @param mouseEvent
+     * @throws CashRegisterException
+     */
     public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
         if(priceField.getText().trim().isEmpty() || lisField.getText().trim().isEmpty())
         {
@@ -76,9 +93,18 @@ public class UpdateController {
     }
 
 
+    /**
+     * cancel button event handler
+     * @param mouseEvent
+     */
     public void onCancelClicked(MouseEvent mouseEvent) {
          closeDialog(mouseEvent);
     }
+
+    /**
+     * method for closing the dialog
+     * @param mouseEvent
+     */
 
     private void closeDialog(MouseEvent mouseEvent){
         Node n = (Node) mouseEvent.getSource();

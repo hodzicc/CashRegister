@@ -13,12 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * JavaFX controller class for User registration
+ */
 public class UserRegistrationController {
 
+    //boolean variable for validation
     private boolean ok=true;
 
+    //manager
     private EmployeesManager manager = new EmployeesManager();
 
+    //form components
     public TextField UsernameField;
     public javafx.scene.control.PasswordField PasswordField;
     public TextField NameField;
@@ -30,6 +36,10 @@ public class UserRegistrationController {
     public CheckBox checkBoxAdmin;
 
 
+    /**
+     * initialize method for new data validation
+     * @throws CashRegisterException
+     */
     public void initialize() throws CashRegisterException {
 
 
@@ -94,18 +104,33 @@ public class UserRegistrationController {
 
     }
 
+    /**
+     * method for closing the dialog
+     * @param mouseEvent
+     */
+
     private void closeDialog(MouseEvent mouseEvent){
         Node n = (Node) mouseEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * cancel button event handler
+     * @param mouseEvent
+     */
     public void onCancelClicked(MouseEvent mouseEvent) {
 
        closeDialog(mouseEvent);
 
     }
 
+    /**
+     * save button event handler
+     * adds new employee to the db
+     * @param mouseEvent
+     * @throws CashRegisterException
+     */
     public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
         try {
             String username = UsernameField.getText();

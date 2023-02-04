@@ -136,6 +136,8 @@ public class MakeReceiptController {
 
     /**
      * add button event handler
+     * adds new products to the receipts table
+     * validates given data
      * @param actionEvent
      * @throws CashRegisterException
      */
@@ -190,6 +192,7 @@ public class MakeReceiptController {
 
     /***
      * Make button event handler
+     * opens new dialog for reviewing the receipt
      * @param actionEvent
      * @throws CashRegisterException
      */
