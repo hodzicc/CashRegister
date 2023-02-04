@@ -15,6 +15,7 @@ import java.util.*;
 
 public class AddProductController {
 
+    private boolean ok=true;
     private ProductsManager manager = new ProductsManager();
     public Button saveBtn;
     public Button cancelBtn;
@@ -30,15 +31,22 @@ public class AddProductController {
         prod=manager.getAll();
         List<Products> finalProd = prod;
         
-        nameField.textProperty().addListener((obs, oldValue, newValue)->{
+        nameField.textProperty().addListener((obs, oldValue, newValue)-> {
+            if(!newValue.matches("[a-zA-Z]+")) {
+                ok = false;
+                nameCheck.setText("Please only use letters a-z, A-Z");
+            } else {
+                for (Products p : finalProd) {
 
-            for(Products p: finalProd) {
-
-                if (p.getName().equals(newValue)) {
-                    nameCheck.setText("That product already exists in the table");
-                   break;
+                    if (p.getName().equals(newValue)) {
+                        nameCheck.setText("That product already exists in the table");
+                        ok = false;
+                        break;
+                    } else {
+                        nameCheck.setText("");
+                        ok = true;
+                    }
                 }
-               else    nameCheck.setText("");
             }
         });
         
@@ -55,22 +63,34 @@ public class AddProductController {
     }
 
     public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
+        if(!ok || nameField.getText().trim().isEmpty() ||
+        priceField.getText().trim().isEmpty()
+        || leftField.getText().trim().isEmpty())
+        {
+            new Alert(Alert.AlertType.ERROR,"Please enter valid data", ButtonType.OK).show();
+        }
+        else {
+            String name = nameField.getText();
+            Double price;
+            int left;
+            try {
+                price = Double.valueOf(priceField.getText());
+                left = Integer.parseInt(leftField.getText());
 
-        String name = nameField.getText();
-        Double price = Double.valueOf(priceField.getText());
-        int left = Integer.parseInt(leftField.getText());
+            Products prod = new Products();
+            prod.setName(name);
+            prod.setPrice(price);
+            prod.setLeftInStock(left);
 
-        Products prod = new Products();
-        prod.setName(name);
-        prod.setPrice(price);
-        prod.setLeftInStock(left);
+            manager.add(prod);
 
-        manager.add(prod);
+            new Alert(Alert.AlertType.NONE, "New product added successfully", ButtonType.OK).show();
 
-        new Alert(Alert.AlertType.NONE,"New product added successfully", ButtonType.OK).show();
-
-        closeDialog(mouseEvent);
-
-
+            closeDialog(mouseEvent);
+        }
+            catch(Exception e){
+            new Alert(Alert.AlertType.ERROR,"Please enter valid data", ButtonType.OK).show();
+        }
+        }
     }
 }

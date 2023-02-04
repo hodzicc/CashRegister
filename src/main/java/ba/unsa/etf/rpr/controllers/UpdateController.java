@@ -40,29 +40,37 @@ public class UpdateController {
 
 
     public void onSaveClicked(MouseEvent mouseEvent) throws CashRegisterException {
+        if(priceField.getText().trim().isEmpty() || lisField.getText().trim().isEmpty())
+        {
+            new Alert(Alert.AlertType.ERROR,"Please enter valid data", ButtonType.OK).show();
+        }
+        else {
+            try {
+                String name = nameLabel.getText();
+                Double price = Double.valueOf(priceField.getText());
+                int left = Integer.parseInt(lisField.getText());
 
-        String name = nameLabel.getText();
-        Double price = Double.valueOf(priceField.getText());
-        int left = Integer.parseInt(lisField.getText());
+                Products prod = new Products();
+                prod.setId(id);
+                prod.setName(name);
+                prod.setPrice(price);
+                prod.setLeftInStock(left);
 
-        Products prod = new Products();
-        prod.setId(id);
-        prod.setName(name);
-        prod.setPrice(price);
-        prod.setLeftInStock(left);
+                manager.update(prod);
+                closeDialog(mouseEvent);
+                new Alert(Alert.AlertType.NONE, "Product updated successfully", ButtonType.OK).show();
+            }
+            catch(Exception e){
+                new Alert(Alert.AlertType.ERROR,"Please enter valid data", ButtonType.OK).show();
+            }
 
-        manager.update(prod);
-
-
-        closeDialog(mouseEvent);
-
-        new Alert(Alert.AlertType.NONE,"Product updated successfully", ButtonType.OK).show();
+        }
 
     }
 
 
     public void onCancelClicked(MouseEvent mouseEvent) {
-        closeDialog(mouseEvent);
+         closeDialog(mouseEvent);
     }
 
     private void closeDialog(MouseEvent mouseEvent){

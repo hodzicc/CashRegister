@@ -2,10 +2,10 @@ package ba.unsa.etf.rpr.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -13,21 +13,28 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class AdminMenuController {
 
-
+    private void closeDialog(ActionEvent mouseEvent){
+        Node n = (Node) mouseEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
+    }
     public void onProductsClicked(ActionEvent actionEvent) {
 
         openDialog("Products", "/fxml/Products.fxml",null);
+        closeDialog(actionEvent);
 
     }
 
     public void onReceiptsClicked(ActionEvent actionEvent) {
 
         openDialog("Receipts", "/fxml/MakeReceipt.fxml",null);
+        closeDialog(actionEvent);
 
     }
 
-    public void onUserRegistrationClicked(MouseEvent mouseEvent) {
+    public void onUserRegistrationClicked(ActionEvent mouseEvent) {
         openDialog("User Registration", "/fxml/UserRegistration.fxml",null);
+        closeDialog(mouseEvent);
 
     }
 
