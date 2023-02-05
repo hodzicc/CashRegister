@@ -106,6 +106,7 @@ public class EmployeesManagerTest {
         Mockito.verify(employeesManager).add(emp);
     }
 
+    @Test
     public void getAll() throws CashRegisterException {
         when(employeesManager.getAll()).thenReturn(employees);
 
