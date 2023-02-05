@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a19be4b8-6134-4d2a-9c02-da15cb08248e" name="Changes" comment="add app class">
+    <list default="true" id="a19be4b8-6134-4d2a-9c02-da15cb08248e" name="Changes" comment="final commit">
       <change beforePath="$PROJECT_DIR$/target/test-classes/ba/unsa/etf/rpr/business/ProductsManagerTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,13 +105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670698056844</updated>
-    </task>
-    <task id="LOCAL-00181" summary="refactoring of dao - small changes">
-      <created>1673053345201</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1673053345202</updated>
     </task>
     <task id="LOCAL-00182" summary="implementation of getInstance and removeInstance in ReceiptsDAOSQLImpl">
       <created>1673053896690</created>
@@ -449,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675601575410</updated>
     </task>
-    <option name="localTasksCounter" value="230" />
+    <task id="LOCAL-00230" summary="final commit">
+      <created>1675602005496</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1675602005496</updated>
+    </task>
+    <option name="localTasksCounter" value="231" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change of columnLabel in row2object" />
     <MESSAGE value="small changes in column names" />
     <MESSAGE value="small fixes, changing TreeMap to LinkedHash" />
     <MESSAGE value="changes in object2row" />
@@ -489,7 +488,8 @@
     <MESSAGE value="small changes" />
     <MESSAGE value="add cli dependency" />
     <MESSAGE value="add app class" />
-    <option name="LAST_COMMIT_MESSAGE" value="add app class" />
+    <MESSAGE value="final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
