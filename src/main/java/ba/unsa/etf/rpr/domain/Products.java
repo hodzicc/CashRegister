@@ -12,6 +12,16 @@ public class Products implements Idable{
     private double price;
     private int leftInStock;
 
+    public Products(){
+
+    }
+    public Products(int id, String name, double price, int lin){
+        this.id=id;
+        this.name=name;
+        this.price=price;
+        leftInStock=lin;
+    }
+
     public int getId() {
         return id;
     }
