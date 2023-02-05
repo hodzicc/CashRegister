@@ -5,6 +5,8 @@ import ba.unsa.etf.rpr.domain.Products;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.util.List;
+import java.util.regex.Pattern;
+
 /**
  * Business logic layer for Products
  *
@@ -19,7 +21,7 @@ public class ProductsManager {
      */
 
     public void validateName(String name) throws CashRegisterException{
-        if (name == null || name.length() > 45 || name.length() < 3 || name.matches("^[A-Za-z]")){
+        if (name == null || name.length() > 45 || name.length() < 3 || !Pattern.compile("[a-zA-Z]*").matcher(name).matches()){
             throw new CashRegisterException("Name must be between 3 and 45 chars, can't contain numbers");
         }
 

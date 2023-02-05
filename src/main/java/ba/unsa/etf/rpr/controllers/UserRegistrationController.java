@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+import java.util.regex.*;
 /**
  * JavaFX controller class for User registration
  */
@@ -48,7 +48,7 @@ public class UserRegistrationController {
 
         List<Employees> finalEmpl = empl;
         NameField.textProperty().addListener((obs, oldValue, newValue)->{
-            if(newValue.matches("^[a-zA-Z]")) {
+            if(!Pattern.compile("[a-zA-Z]*").matcher(newValue).matches()) {
                 ok = false;
                 FullNameCheck.setText("Please only use letters a-z, A-Z");
             }
@@ -67,7 +67,7 @@ public class UserRegistrationController {
             }
         });
         UsernameField.textProperty().addListener((obs, oldValue, newValue)->{
-            if(newValue.matches("^[a-zA-Z]")) {
+            if(!Pattern.compile("[a-zA-Z]*").matcher(newValue).matches()) {
                 ok = false;
                 UsernameCheck.setText("Please only use letters a-z, A-Z");
             }
@@ -87,7 +87,7 @@ public class UserRegistrationController {
         });
         PasswordField.textProperty().addListener((obs, oldValue, newValue)->{
 
-                if (newValue.length()<=4) {
+                if (newValue.length()<5) {
                     PasswordCheck.setText("Password too short");
                     ok=false;
 

@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.domain.Employees;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Business logic layer for Employees
@@ -20,7 +21,7 @@ public class EmployeesManager {
      * @throws CashRegisterException
      */
     public void validateUsername(String name) throws CashRegisterException{
-        if (name == null || name.length() > 45 || name.length() < 3 || name.matches("^[A-Za-z]")){
+        if (name == null || name.length() > 45 || name.length() < 3 || !Pattern.compile("[a-zA-Z]*").matcher(name).matches()){
             throw new CashRegisterException("Username must be between 3 and 45 chars, can't contain numbers");
         }
     }
@@ -32,7 +33,7 @@ public class EmployeesManager {
      */
 
     public void validateFullName(String name) throws CashRegisterException{
-        if (name == null || !name.contains(" ") || name.length() > 45 || name.length() < 3 || name.matches("^[A-Za-z]")){
+        if (name == null || name.length() > 45 || name.length() < 3){
             throw new CashRegisterException("Name must be between 3 and 45 chars, can't contain numbers");
         }
 
@@ -45,7 +46,7 @@ public class EmployeesManager {
      */
     public void validatePassword(String pass) throws CashRegisterException{
         if (pass == null || pass.length() > 20 || pass.length() < 5){
-            throw new CashRegisterException("Password must be between 5 and 29 chars");
+            throw new CashRegisterException("Password must be between 5 and 20 chars");
         }
 
     }

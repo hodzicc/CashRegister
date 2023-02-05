@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * JavaFX controller for adding new products
@@ -44,7 +45,7 @@ public class AddProductController {
         List<Products> finalProd = prod;
         
         nameField.textProperty().addListener((obs, oldValue, newValue)-> {
-            if(newValue.matches("^[a-zA-Z]")) {
+            if(!Pattern.compile("[a-zA-Z]*").matcher(newValue).matches()) {
                 ok = false;
                 nameCheck.setText("Please only use letters a-z, A-Z, between 3 and 45 characters");
             } else {

@@ -14,6 +14,17 @@ public class Employees implements Idable{
     private String name;
     private boolean admin;
 
+    public Employees(){
+
+    }
+    public Employees(int id, String name, String username, String password, boolean admin){
+        this.id=id;
+        this.name=name;
+        this.username=username;
+        this.password=password;
+        this.admin=admin;
+    }
+
     public int getId() {
         return id;
     }
