@@ -34,7 +34,7 @@ public class EmployeesManager {
 
     public void validateFullName(String name) throws CashRegisterException{
         if (name == null || name.length() > 45 || name.length() < 3){
-            throw new CashRegisterException("Name must be between 3 and 45 chars, can't contain numbers");
+            throw new CashRegisterException("Name must be between 3 and 45 chars");
         }
 
         }

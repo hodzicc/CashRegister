@@ -227,7 +227,7 @@ public abstract class AbstractDAO<T extends Idable> implements DAO<T>{
 
             return item;
         }catch (SQLException e){
-            throw new CashRegisterException(e.getMessage(), e);
+            throw new CashRegisterException("Already exists");
         }
     }
 

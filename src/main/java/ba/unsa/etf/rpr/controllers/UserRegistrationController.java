@@ -48,11 +48,7 @@ public class UserRegistrationController {
 
         List<Employees> finalEmpl = empl;
         NameField.textProperty().addListener((obs, oldValue, newValue)->{
-            if(!Pattern.compile("[a-zA-Z]*").matcher(newValue).matches()) {
-                ok = false;
-                FullNameCheck.setText("Please only use letters a-z, A-Z");
-            }
-            else
+
             for(Employees e: finalEmpl) {
 
                 if (e.getName().equals(newValue)) {
@@ -137,7 +133,7 @@ public class UserRegistrationController {
             String password = PasswordField.getText();
             String name = NameField.getText();
             boolean isAdmin = checkBoxAdmin.isSelected();
-            if (username.trim().isEmpty() || password.trim().isEmpty() || name.trim().isEmpty()) {
+            if (!ok || username.trim().isEmpty() || password.trim().isEmpty() || name.trim().isEmpty()) {
                 new Alert(Alert.AlertType.ERROR, "Invalid registration, please enter required information again", ButtonType.OK).show();
             } else {
 

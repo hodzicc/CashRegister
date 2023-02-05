@@ -1,4 +1,5 @@
 package ba.unsa.etf.rpr.business;
+import ba.unsa.etf.rpr.DAO.DAOFactory;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 public class EmployeesManagerTest {
     private EmployeesManager employeesManager;
@@ -64,15 +66,39 @@ public class EmployeesManagerTest {
 
     @Test
     void validateFullName() throws CashRegisterException {
-        String tooshort = "i";
-        assertThrows(CashRegisterException.class,()-> { employeesManager.validateFullName(tooshort); });
+        String incorrectNameShort = "A";
+        Mockito.doCallRealMethod().when(employeesManager).validateFullName(incorrectNameShort);
+        CashRegisterException crException1 = assertThrows(CashRegisterException.class, () -> {
+            employeesManager.validateFullName(incorrectNameShort);}, "Name must be between 3 and 45 chars");
+        Assertions.assertEquals("Name must be between 3 and 45 chars", crException1.getMessage());
+
+    }
+    @Test
+    void validatePassword() throws CashRegisterException {
+        String incorrectNameShort = "Abcdefghijkljmnnjoprstuvzz";
+        Mockito.doCallRealMethod().when(employeesManager).validatePassword(incorrectNameShort);
+        CashRegisterException crException1 = assertThrows(CashRegisterException.class, () -> {
+            employeesManager.validatePassword(incorrectNameShort);}, "Password must be between 5 and 20 chars");
+        Assertions.assertEquals("Password must be between 5 and 20 chars", crException1.getMessage());
+
     }
 
     @Test
-    void validatePassword() {
-        String toolong = "abcdefghijklljmnnjoprstuvzz";
-        assertThrows(CashRegisterException.class,()-> { employeesManager.validatePassword(toolong); });
+    void add() throws CashRegisterException{
+        Employees newempl = new Employees(34,"Mujo Hasic", "mhaso", "mhaso12354",false);
+        employeesManager.add(newempl);
+
+        Assertions.assertTrue(true);
+        Mockito.verify(employeesManager).add(newempl);
+
     }
+
+    public void getAll() throws CashRegisterException {
+        when(employeesManager.getAll()).thenReturn(employees);
+
+        Assertions.assertEquals(employees, employeesManager.getAll());
+    }
+
 
     
 }
