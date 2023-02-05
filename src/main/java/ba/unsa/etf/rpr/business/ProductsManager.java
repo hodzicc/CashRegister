@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.domain.Products;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -75,6 +76,14 @@ public class ProductsManager {
      */
     public Products add(Products p) throws CashRegisterException{
         validateName(p.getName());
+        for(Products p1:getAll())
+        {
+            if(Objects.equals(p.getName(), p1.getName()))
+            {
+                throw new CashRegisterException("Already exists");
+
+            }
+        }
         return DAOFactory.productsDAO().add(p);
     }
 

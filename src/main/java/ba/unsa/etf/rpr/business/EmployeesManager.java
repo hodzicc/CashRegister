@@ -2,9 +2,11 @@ package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.DAO.DAOFactory;
 import ba.unsa.etf.rpr.domain.Employees;
+import ba.unsa.etf.rpr.domain.Products;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -101,6 +103,14 @@ public class EmployeesManager {
         validateFullName(e.getName());
         validateUsername(e.getUsername());
         validatePassword(e.getPassword());
+        for(Employees e1:getAll())
+        {
+            if(Objects.equals(e.getUsername(), e1.getUsername()))
+            {
+                throw new CashRegisterException("Already exists");
+
+            }
+        }
         return DAOFactory.employeesDAO().add(e);
     }
 

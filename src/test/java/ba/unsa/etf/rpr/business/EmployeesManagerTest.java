@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.business;
 import ba.unsa.etf.rpr.DAO.DAOFactory;
+import ba.unsa.etf.rpr.domain.Products;
 import ba.unsa.etf.rpr.exceptions.CashRegisterException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -91,6 +92,20 @@ public class EmployeesManagerTest {
         Assertions.assertTrue(true);
         Mockito.verify(employeesManager).add(newempl);
 
+    }
+
+    @Test
+    void addExisting() throws CashRegisterException {
+        when(employeesManager.getAll()).thenReturn(employees);
+
+        Employees emp = new Employees(31,"Haso Hasic", "haso", "haso12354",false);
+        Mockito.doCallRealMethod().when(employeesManager).add(emp);
+
+        CashRegisterException exception = Assertions.assertThrows(CashRegisterException.class, () -> {employeesManager.add(emp);});
+
+        Assertions.assertEquals("Already exists", exception.getMessage());
+
+        Mockito.verify(employeesManager).add(emp);
     }
 
     public void getAll() throws CashRegisterException {
