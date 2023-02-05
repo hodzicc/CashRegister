@@ -63,7 +63,6 @@ class ProductsManagerTest {
 
         Products pro = new Products(41,"ananas", 4.5, 30);
         Mockito.doCallRealMethod().when(productsManager).add(pro);
-
         CashRegisterException exception = Assertions.assertThrows(CashRegisterException.class, () -> {productsManager.add(pro);});
 
         Assertions.assertEquals("Already exists", exception.getMessage());

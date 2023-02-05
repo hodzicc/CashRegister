@@ -97,10 +97,8 @@ public class EmployeesManagerTest {
     @Test
     void addExisting() throws CashRegisterException {
         when(employeesManager.getAll()).thenReturn(employees);
-
         Employees emp = new Employees(31,"Haso Hasic", "haso", "haso12354",false);
         Mockito.doCallRealMethod().when(employeesManager).add(emp);
-
         CashRegisterException exception = Assertions.assertThrows(CashRegisterException.class, () -> {employeesManager.add(emp);});
 
         Assertions.assertEquals("Already exists", exception.getMessage());

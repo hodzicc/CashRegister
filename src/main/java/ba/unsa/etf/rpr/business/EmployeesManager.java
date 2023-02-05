@@ -27,7 +27,6 @@ public class EmployeesManager {
             throw new CashRegisterException("Username must be between 3 and 45 chars, can't contain numbers");
         }
     }
-
     /**
      * method for users full name validation
      * @param name
